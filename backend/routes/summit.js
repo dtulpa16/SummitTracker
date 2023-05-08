@@ -6,7 +6,7 @@ const {
   updateHikeById,
   createHike,
   deleteHikeById,
-} = require("../controllers/controllers.js");
+} = require("../controllers/hikeControllers.js");
 
 router.get("/", async (req, res) => {
   let results = await getAllHikes();
@@ -30,13 +30,13 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/update-post/:id", async (req, res) => {
+router.put("/update-hike/:id", async (req, res) => {
   let result = await updateHikeById(req.params.id, req.body);
   console.log(result);
   return res.status(200).send(result);
 });
 
-router.delete("/delete-post/:id", async (req, res) => {
+router.delete("/delete-hike/:id", async (req, res) => {
   let result = await deleteHikeById(req.params.id);
   console.log(result);
   return res.status(204).send(result);
