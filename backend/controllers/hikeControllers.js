@@ -5,11 +5,14 @@ async function getAllHikes() {
 }
 
 async function getHikeById(id) {
-  let response = await Hike.findById({_id: id});
+  let response = await Hike.findById({ _id: id });
   return response;
 }
 
-async function updateHikeById(id, data) {}
+async function updateHikeById(id, data) {
+  let response = await Hike.findByIdAndUpdate(id, data, { new: true });
+  return response;
+}
 
 async function createHike(body) {
   let response = new Hike(body);
@@ -17,7 +20,10 @@ async function createHike(body) {
   return response;
 }
 
-async function deleteHikeById(id) {}
+async function deleteHikeById(id) {
+  let response = await Hike.findByIdAndDelete({_id:id})
+  return response
+}
 module.exports = {
   getAllHikes,
   getHikeById,

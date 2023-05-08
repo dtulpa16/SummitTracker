@@ -30,13 +30,17 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/update-hike/:id", async (req, res) => {
-  let result = await updateHikeById(req.params.id, req.body);
-  console.log(result);
-  return res.status(200).send(result);
+router.put("/:id", async (req, res) => {
+  try {
+    let result = await updateHikeById(req.params.id, req.body);
+    console.log(result);
+    return res.status(201).send(result);
+  } catch (er) {
+    return res.status(500).send(er);
+  }
 });
 
-router.delete("/delete-hike/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   let result = await deleteHikeById(req.params.id);
   console.log(result);
   return res.status(204).send(result);
