@@ -1,11 +1,12 @@
 const { Hike } = require("../models/summit");
 async function getAllHikes() {
-  let response = await Hike.find({})
-  return response
+  let response = await Hike.find({});
+  return response;
 }
 
 async function getHikeById(id) {
-  return;
+  let response = await Hike.findById({_id: id});
+  return response;
 }
 
 async function updateHikeById(id, data) {}

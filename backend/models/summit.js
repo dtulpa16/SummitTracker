@@ -28,7 +28,7 @@ const hikeSchema = mongoose.Schema({
     default: "40.398857, -105.052643",
   },
   altitude: { type: Number, default: 0 },
-  length: { type: mongoose.Decimal128 },
+  length: { type: Number, default: 0 },
   date: { type: Date, default: Date.now },
   notes: [
     {
