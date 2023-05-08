@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const validateHike = require("../middleware/middleware");
 const {
   getAllHikes,
   getHikeById,
@@ -20,7 +21,7 @@ router.get("/:id", async (req, res) => {
   return res.status(200).send(result);
 });
 
-router.post("/", async (req, res) => {
+router.post("/",[validateHike], async (req, res) => {
   try {
     let result = await createHike(req.body);
     console.log(result);
