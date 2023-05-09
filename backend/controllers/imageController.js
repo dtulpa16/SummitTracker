@@ -6,7 +6,7 @@ async function getAllImages() {
 }
 
 async function getImagesById(id) {
-  let response = await Photo.findById({ _id: id });
+  let response = await Photo.find({ hike: id });
   return response;
 }
 
@@ -19,8 +19,14 @@ async function createImage(hikeId, imageUrl) {
   return response;
 }
 
+async function deleteImageById(id) {
+  let response = await Photo.findByIdAndDelete({ _id: id });
+  return response;
+}
+
 module.exports = {
   getAllImages,
   getImagesById,
   createImage,
+  deleteImageById
 };

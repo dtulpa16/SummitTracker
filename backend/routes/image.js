@@ -6,6 +6,7 @@ const {
   getAllImages,
   getImagesById,
   createImage,
+  deleteImageById
 } = require("../controllers/imageController");
 
 const upload = multer({
@@ -43,7 +44,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    let response = await getImagesById(req.params.is);
+    let response = await getImagesById(req.params.id);
     return res.status(200).send(response);
   } catch (er) {
     return res.status(500).send(er);
@@ -55,7 +56,12 @@ router.put("/update-image/:id", async (req, res) => {
 });
 
 router.delete("/delete-image/:id", async (req, res) => {
-  return;
+  try {
+    let response = await deleteImageById(req.params.id);
+    return res.status(200).send(response);
+  } catch (er) {
+    return res.status(500).send(er);
+  }
 });
 
 module.exports = router;
