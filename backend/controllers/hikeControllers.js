@@ -24,6 +24,7 @@ async function deleteHikeById(id) {
   let response = await Hike.findByIdAndDelete({_id:id})
   return response
 }
+
 module.exports = {
   getAllHikes,
   getHikeById,
