@@ -3,7 +3,9 @@ const app = express();
 const connectDb = require("./startup/db")
 const summit = require("./routes/summit")
 const image = require("./routes/image")
+const cors = require("cors");
 
+app.use(cors());
 connectDb()
 app.use(express.json());
 app.use('/api/summit', summit)
