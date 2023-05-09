@@ -1,4 +1,4 @@
-const { Hike } = require("../models/summit");
+const { Hike, Note } = require("../models/summit");
 async function getAllHikes() {
   let response = await Hike.find({});
   return response;
@@ -21,8 +21,25 @@ async function createHike(body) {
 }
 
 async function deleteHikeById(id) {
-  let response = await Hike.findByIdAndDelete({_id:id})
-  return response
+  let response = await Hike.findByIdAndDelete({ _id: id });
+  return response;
+}
+
+async function addNote(id, data) {
+
+  const hike = await Hike.findById({ _id: id });
+
+  const note = new Note(data);
+  await note.save();
+
+  hike.notes.push(note._id);
+  await hike.save();
+}
+
+async function fetchNotes(req) {
+  const hikeId = req.params.id;
+  const hike = await Hike.findById(hikeId).populate("notes");
+  return hike.notes;
 }
 
 module.exports = {
@@ -31,4 +48,6 @@ module.exports = {
   updateHikeById,
   createHike,
   deleteHikeById,
+  addNote,
+  fetchNotes
 };

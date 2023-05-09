@@ -7,6 +7,8 @@ const {
   updateHikeById,
   createHike,
   deleteHikeById,
+  addNote,
+  fetchNotes,
 } = require("../controllers/hikeControllers.js");
 
 router.get("/", async (req, res) => {
@@ -21,12 +23,32 @@ router.get("/:id", async (req, res) => {
   return res.status(200).send(result);
 });
 
-router.post("/",[validateHike], async (req, res) => {
+router.post("/", [validateHike], async (req, res) => {
   try {
     let result = await createHike(req.body);
     console.log(result);
     return res.status(201).send(result);
   } catch (er) {
+    return res.status(500).send(er);
+  }
+});
+
+router.get("/:id/fetch-notes", async (req, res) => {
+  try {
+    let response = await fetchNotes(req, res);
+    res.status(200).send(response);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+router.post("/:hikeId/note", [], async (req, res) => {
+  try {
+    let result = await addNote(req.params.hikeId, req.body);
+    console.log(result);
+    return res.status(201).send(result);
+  } catch (er) {
+    console.log(er);
     return res.status(500).send(er);
   }
 });
