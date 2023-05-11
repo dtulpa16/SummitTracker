@@ -5,6 +5,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import PastHikesScreen from "./screens/PastHikesScreen";
+import HikeDetailsScreen from "./screens/HikeDetailsScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -15,6 +16,10 @@ export default function App() {
         <Stack.Screen
           name="Past Hikes"
           component={PastHikesScreen}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="Hike Details"
+          component={HikeDetailsScreen}
         ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

@@ -26,6 +26,10 @@ export default function HomeScreen({ navigation }) {
         title="Past Hikes"
         onPress={() => navigation.navigate("Past Hikes")}
       />
+      <Button
+        title="Hike Details"
+        onPress={() => navigation.navigate("Hike Details")}
+      />
       <StatusBar style="auto" />
     </View>
   );
