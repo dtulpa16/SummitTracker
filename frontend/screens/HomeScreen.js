@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
-export default function HomeScreen() {
+import { Text, View, Button } from "react-native";
+export default function HomeScreen({ navigation }) {
   const [hikes, setAllHikes] = useState([]);
 
   useEffect(() => {
@@ -22,6 +22,10 @@ export default function HomeScreen() {
     <View className="flex-1 items-center justify-center bg-emerald-900">
       <Text className=" text-white text-5xl">SummitTracker!</Text>
       {/* StatusBar displays base phone info*/}
+      <Button
+        title="Past Hikes"
+        onPress={() => navigation.navigate("Past Hikes")}
+      />
       <StatusBar style="auto" />
     </View>
   );
