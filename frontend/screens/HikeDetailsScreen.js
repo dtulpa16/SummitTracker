@@ -27,9 +27,9 @@ export default function HikeDetailsScreen({ route, navigation }) {
         Altitude: {data?.altitude} ft
       </Text>
       <Text className="text-lg font-bold text-white">Notes</Text>
-      {/* <View>
-        <HikeNotes hikeId={hikeId} />
-      </View> */}
+      <View>
+        <HikeNotes notes={data.notes} />
+      </View>
     </View>
   ) : (
     <Text>Loading...</Text>

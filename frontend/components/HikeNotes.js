@@ -1,13 +1,10 @@
 import React from "react";
 import { Text, View } from "react-native";
 import useFetch from "../hooks/useFetch";
-export default function HikeNotes({ hikeId }) {
-  const { data, isLoading, error } = useFetch(
-    `http://3185-65-50-175-67.ngrok.io/api/summit/${hikeId}/fetch-notes/`
-  );
-  return !isLoading  ? (
+export default function HikeNotes({ notes }) {
+  return notes  ? (
     <View>
-      {data?.map((note, index) => (
+      {notes?.map((note, index) => (
         <HikeNoteCard note={note} index={index} />
       ))}
     </View>
