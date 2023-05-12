@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Text, View, Button } from "react-native";
+import { URL_HOST } from "../utils/urlHost";
 export default function HomeScreen({ navigation }) {
   const [hikes, setAllHikes] = useState([]);
 
@@ -11,8 +12,7 @@ export default function HomeScreen({ navigation }) {
 
   const getAllHikes = async () => {
     try {
-      //const response = await axios.get("http://localhost:5000/api/summit/");
-      const response = await axios.get("https://cat-fact.herokuapp.com/facts");
+      const response = await axios.get(`${URL_HOST}/api/summit/`);
       console.log(response.data);
     } catch (error) {
       console.log("getAllHikes error: ", error);

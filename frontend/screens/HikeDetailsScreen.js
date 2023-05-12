@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { View, Text } from "react-native";
 import useFetch from "../hooks/useFetch";
 import HikeNotes from "../components/HikeNotes";
+import { URL_HOST } from "../utils/urlHost";
+
 export default function HikeDetailsScreen() {
   const [hikeId, setHikeId] = useState("6459a85abba47b696adbdef9");
   const { data, isLoading, error } = useFetch(
-    `https://3185-65-50-175-67.ngrok.io/api/summit/${hikeId}`
+    `${URL_HOST}/api/summit/${hikeId}`
   );
   const formatDate = () => {
     const options = { month: "long", day: "numeric", year: "numeric" };
