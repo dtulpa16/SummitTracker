@@ -18,7 +18,10 @@ const PastHikesScreen = ({ navigation }) => {
               <Text className=" text-xl text-white">{hike.length} miles</Text>
               <Button
                 onPress={() =>
-                  navigation.navigate("Hike Details", { hikeId: hike._id })
+                  navigation.navigate("Hike Details", {
+                    hikeId: hike._id,
+                    name: hike.name,
+                  })
                 }
                 title="Details"
               ></Button>

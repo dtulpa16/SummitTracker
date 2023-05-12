@@ -20,6 +20,7 @@ export default function App() {
         <Stack.Screen
           name="Hike Details"
           component={HikeDetailsScreen}
+          options={({ route }) => ({ title: route.params.name })}
         ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
