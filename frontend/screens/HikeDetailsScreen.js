@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import useFetch from "../hooks/useFetch";
 import HikeNotes from "../components/HikeNotes";
 import { URL_HOST } from "../utils/urlHost";
+import HikeImages from "../components/HikeImages";
 
 export default function HikeDetailsScreen({ route, navigation }) {
   // const [hikeId, setHikeId] = useState("6459a85abba47b696adbdef9");
@@ -16,7 +17,7 @@ export default function HikeDetailsScreen({ route, navigation }) {
     const formattedDate = date.toLocaleDateString("en-US", options);
     return formattedDate;
   };
-  return !isLoading  ? (
+  return !isLoading ? (
     <View className="flex-1 items-start bg-emerald-900 pl-4 pt-4 gap-2">
       <Text className="text-4xl font-bold text-white">{data?.name}</Text>
       <Text className="text-xl font-bold text-white">{formatDate()}</Text>
@@ -29,6 +30,9 @@ export default function HikeDetailsScreen({ route, navigation }) {
       <Text className="text-lg font-bold text-white">Notes</Text>
       <View>
         <HikeNotes notes={data.notes} />
+      </View>
+      <View>
+        <HikeImages hikeId={data._id} />
       </View>
     </View>
   ) : (

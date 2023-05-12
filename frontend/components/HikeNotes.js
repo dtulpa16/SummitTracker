@@ -2,10 +2,12 @@ import React from "react";
 import { Text, View } from "react-native";
 import useFetch from "../hooks/useFetch";
 export default function HikeNotes({ notes }) {
-  return notes  ? (
+  return notes ? (
     <View>
       {notes?.map((note, index) => (
-        <HikeNoteCard note={note} index={index} />
+        <View key={index}>
+          <HikeNoteCard note={note} index={index} />
+        </View>
       ))}
     </View>
   ) : (
