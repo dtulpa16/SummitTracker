@@ -5,8 +5,8 @@ import HikeNotes from "../components/HikeNotes";
 import { URL_HOST } from "../utils/urlHost";
 
 export default function HikeDetailsScreen({ route, navigation }) {
-  //const [hikeId, setHikeId] = useState("6459a85abba47b696adbdef9");
-  const { hikeId } = route.params;
+  const [hikeId, setHikeId] = useState("6459a85abba47b696adbdef9");
+  // const { hikeId } = route.params;
   const { data, isLoading, error } = useFetch(
     `${URL_HOST}/api/summit/${hikeId}`
   );
@@ -16,20 +16,20 @@ export default function HikeDetailsScreen({ route, navigation }) {
     const formattedDate = date.toLocaleDateString("en-US", options);
     return formattedDate;
   };
-  return !isLoading && data ? (
+  return !isLoading  ? (
     <View className="flex-1 items-start bg-emerald-900 pl-4 pt-4 gap-2">
-      <Text className="text-4xl font-bold text-white">{data.name}</Text>
+      <Text className="text-4xl font-bold text-white">{data?.name}</Text>
       <Text className="text-xl font-bold text-white">{formatDate()}</Text>
       <Text className="text-lg font-bold text-white">
-        Length: {data.length} miles
+        Length: {data?.length} miles
       </Text>
       <Text className="text-lg font-bold text-white">
-        Altitude: {data.altitude} ft
+        Altitude: {data?.altitude} ft
       </Text>
       <Text className="text-lg font-bold text-white">Notes</Text>
-      <View>
+      {/* <View>
         <HikeNotes hikeId={hikeId} />
-      </View>
+      </View> */}
     </View>
   ) : (
     <Text>Loading...</Text>
