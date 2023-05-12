@@ -5,7 +5,7 @@ import HikeNotes from "../components/HikeNotes";
 export default function HikeDetailsScreen() {
   const [hikeId, setHikeId] = useState("6459a85abba47b696adbdef9");
   const { data, isLoading, error } = useFetch(
-    `https://3185-65-50-175-67.ngrok.io/api/summit/${hikeId}`
+    `http://3185-65-50-175-67.ngrok.io/api/summit/${hikeId}`
   );
   const formatDate = () => {
     const options = { month: "long", day: "numeric", year: "numeric" };
@@ -13,7 +13,7 @@ export default function HikeDetailsScreen() {
     const formattedDate = date.toLocaleDateString("en-US", options);
     return formattedDate;
   };
-  return !isLoading && data.length > 0 ? (
+  return !isLoading && data ? (
     <View className="flex-1 items-start bg-emerald-900 pl-4 pt-4 gap-2">
       <Text className="text-4xl font-bold text-white">{data.name}</Text>
       <Text className="text-xl font-bold text-white">{formatDate()}</Text>

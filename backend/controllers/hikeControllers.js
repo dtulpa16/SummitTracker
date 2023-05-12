@@ -5,7 +5,7 @@ async function getAllHikes() {
 }
 
 async function getHikeById(id) {
-  let response = await Hike.findById({ _id: id });
+  let response = await Hike.findById(id).populate("notes");
   return response;
 }
 

@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import useFetch from "../hooks/useFetch";
 export default function HikeNotes({ hikeId }) {
   const { data, isLoading, error } = useFetch(
-    `https://3185-65-50-175-67.ngrok.io/api/summit/${hikeId}/fetch-notes/`
+    `http://3185-65-50-175-67.ngrok.io/api/summit/${hikeId}/fetch-notes/`
   );
   return !isLoading  ? (
     <View>
