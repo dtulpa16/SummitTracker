@@ -5,8 +5,8 @@ import HikeNotes from "../components/HikeNotes";
 import { URL_HOST } from "../utils/urlHost";
 
 export default function HikeDetailsScreen({ route, navigation }) {
-  const [hikeId, setHikeId] = useState("6459a85abba47b696adbdef9");
-  // const { hikeId } = route.params;
+  // const [hikeId, setHikeId] = useState("6459a85abba47b696adbdef9");
+  const { hikeId } = route.params;
   const { data, isLoading, error } = useFetch(
     `${URL_HOST}/api/summit/${hikeId}`
   );
