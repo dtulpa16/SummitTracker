@@ -4,6 +4,7 @@ import useFetch from "../hooks/useFetch";
 import HikeNotes from "../components/HikeNotes";
 import { URL_HOST } from "../utils/urlHost";
 import HikeImages from "../components/HikeImages";
+import ImageUpload from "../components/ImageUpload";
 
 export default function HikeDetailsScreen({ route, navigation }) {
   // const [hikeId, setHikeId] = useState("6459a85abba47b696adbdef9");
@@ -31,12 +32,11 @@ export default function HikeDetailsScreen({ route, navigation }) {
       <View>
         <HikeNotes notes={data.notes} />
       </View>
-      <Text className="text-lg font-bold text-white">
-        Pics:
-      </Text>
-      <View className="">
-        <HikeImages hikeId={data._id} />
-      </View>
+      <Text className="text-lg font-bold text-white">Pics:</Text>
+
+      <HikeImages hikeId={data._id} />
+
+      <ImageUpload hikeId={data._id} />
     </View>
   ) : (
     <Text>Loading...</Text>
