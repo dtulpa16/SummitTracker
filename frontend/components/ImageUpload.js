@@ -1,10 +1,11 @@
-import React, { useState,useEffect } from 'react';
-import { Button, Image, View } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
+import React, { useState, useEffect } from "react";
+import { Button, Image, View } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import SelectedImagesModal from "./SelectedImagesModal";
 
 export default function ImageUpload({ hikeId }) {
   const [selectedImages, setSelectedImages] = useState([]);
-
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -14,7 +15,11 @@ export default function ImageUpload({ hikeId }) {
     });
 
     if (!result.canceled) {
-      setSelectedImages([...selectedImages, ...result.assets.map(asset => asset.uri)]);
+      setSelectedImages([
+        ...selectedImages,
+        ...result.assets.map((asset) => asset.uri),
+      ]);
+      setIsModalVisible(true);
     }
   };
 
@@ -33,9 +38,15 @@ export default function ImageUpload({ hikeId }) {
   return (
     <View className="">
       <Button title="Pick an image from camera roll" onPress={pickImage} />
-      {selectedImages.map((image, index) => (
-        <Image key={index} source={{ uri: image }} style={{ width: 200, height: 200 }} />
-      ))}
+      {selectedImages.length > 0 && (
+        <SelectedImagesModal
+          selectedImages={selectedImages}
+          hikeId={hikeId}
+          isVisible={isModalVisible}
+          setIsVisible={setIsModalVisible}
+          setSelectedImages={setSelectedImages}
+        />
+      )}
     </View>
   );
 }
