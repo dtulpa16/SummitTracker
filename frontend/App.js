@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import PastHikesScreen from "./screens/PastHikesScreen";
 import HikeDetailsScreen from "./screens/HikeDetailsScreen";
+import AddHikeScreen from "./screens/AddHikeScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
           component={HikeDetailsScreen}
           options={({ route }) => ({ title: route.params.name || "Details" })}
         ></Stack.Screen>
+        <Stack.Screen name="Add Hike" component={AddHikeScreen}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
