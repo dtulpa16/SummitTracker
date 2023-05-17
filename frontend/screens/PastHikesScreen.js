@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, Button } from "react-native";
+import { View, Text, StatusBar, Button, TouchableOpacity } from "react-native";
 import { URL_HOST } from "../utils/urlHost";
 import useFetch from "../hooks/useFetch";
 const PastHikesScreen = ({ navigation }) => {
@@ -16,22 +16,29 @@ const PastHikesScreen = ({ navigation }) => {
               <Text className=" text-2xl text-white">{hike?.name}</Text>
               <Text className=" text-lg text-white">{hike?.altitude}</Text>
               <Text className=" text-xl text-white">{hike?.length} miles</Text>
-              <Button
+              <TouchableOpacity
                 onPress={() =>
                   navigation.navigate("Hike Details", {
                     hikeId: hike?._id,
                     name: hike?.name,
                   })
                 }
-                title="Details"
-              ></Button>
+                className="flex justify-center p-4 bg-orange-400 rounded-lg drop-shadow-md m-auto"
+              >
+                <Text className=" text-white text-md">Details</Text>
+              </TouchableOpacity>
             </View>
           ))
         ) : (
           <Text>No recorded hikes!</Text>
         )}
       </View>
-      <Button title="Home!" onPress={() => navigation.navigate("Home")} />
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Home")}
+        className="flex justify-center p-4 bg-orange-400 rounded-lg"
+      >
+        <Text className=" text-white text-xl">Return Home</Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   ) : (

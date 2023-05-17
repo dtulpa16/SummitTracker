@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Image, View } from "react-native";
+import { Button, Image, View, TouchableOpacity, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import SelectedImagesModal from "./SelectedImagesModal";
 
@@ -45,7 +45,12 @@ export default function ImageUpload({ hikeId, refetch }) {
   return (
     <View className="">
       {/* Button to open the image picker */}
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      <TouchableOpacity
+        onPress={pickImage}
+        className="flex justify-center p-4 bg-orange-400 rounded-lg"
+      >
+        <Text className=" text-white text-xl">Select an Image</Text>
+      </TouchableOpacity>
       {/* If there are selected images, show the modal */}
       {selectedImages.length > 0 && (
         <SelectedImagesModal
