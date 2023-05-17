@@ -49,7 +49,7 @@ export default function ImageUpload({ hikeId, refetch }) {
         onPress={pickImage}
         className="flex justify-center p-4 bg-orange-400 rounded-lg"
       >
-        <Text className=" text-white text-xl">Select an Image</Text>
+        <Text className=" text-white text-xl">Upload Images</Text>
       </TouchableOpacity>
       {/* If there are selected images, show the modal */}
       {selectedImages.length > 0 && (
