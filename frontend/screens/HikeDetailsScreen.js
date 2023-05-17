@@ -6,6 +6,7 @@ import { URL_HOST } from "../utils/urlHost";
 import HikeImages from "../components/HikeImages";
 import ImageUpload from "../components/ImageUpload";
 import MapComponent from "../components/MapComponent";
+import AddHikeNotes from "../components/AddHikeNotesModal";
 
 // HikeDetailsScreen is the main component for displaying details of a hike.
 export default function HikeDetailsScreen({ route, navigation }) {
@@ -19,9 +20,9 @@ export default function HikeDetailsScreen({ route, navigation }) {
 
   // Function to format the hike's date in a readable format
   const formatDate = () => {
-    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    const options = { month: "long", day: "numeric", year: "numeric" };
     const date = new Date(data.date);
-    const formattedDate = date.toLocaleDateString('en-US', options);
+    const formattedDate = date.toLocaleDateString("en-US", options);
     return formattedDate;
   };
 
@@ -52,8 +53,12 @@ export default function HikeDetailsScreen({ route, navigation }) {
       <HikeImages hikeId={data._id} />
 
       {/* Component for uploading new images */}
-      <ImageUpload hikeId={data._id} refetch={refetch}/>
-      <MapComponent latitude={data?.coordinates?.split(",")[0]} longitude={data?.coordinates?.split(",")[1]} />
+      <ImageUpload hikeId={data._id} refetch={refetch} />
+      <AddHikeNotes hikeId={data._id} refetch={refetch} />
+      <MapComponent
+        latitude={data?.coordinates?.split(",")[0]}
+        longitude={data?.coordinates?.split(",")[1]}
+      />
     </View>
   );
 }
