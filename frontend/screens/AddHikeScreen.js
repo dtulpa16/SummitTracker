@@ -61,7 +61,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Altitude"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md"
+              className="bg-white p-4 rounded-md text-emerald-900"
             />
             <TextInput
               value={length}
@@ -69,7 +69,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Length (miles)"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md"
+              className="bg-white p-4 rounded-md text-emerald-900"
             />
             <TextInput
               value={lat}
@@ -77,7 +77,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Latitude Coordinates"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md"
+              className="bg-white p-4 rounded-md text-emerald-900"
             />
             <TextInput
               value={long}
@@ -85,7 +85,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Longitude Coordinates"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md"
+              className="bg-white p-4 rounded-md text-emerald-900"
             />
             <TouchableOpacity
               onPress={handleSubmit}
