@@ -28,9 +28,7 @@ export default function AddHikeScreen({ navigation }) {
         length: parseFloat(length),
         coordinates: `${lat}, ${long}`,
       };
-      console.log("Form Data: ", formData);
       let response = await axios.post(`${URL_HOST}/api/summit/`, formData);
-      console.log("POST response: ", response.data);
       navigation.navigate("Hike Details", {
         hikeId: response?.data?._id,
         name: response?.data?.name,

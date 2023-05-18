@@ -8,10 +8,28 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
 } from "react-native";
-
+import axios from "axios";
+import { URL_HOST } from "../utils/urlHost";
 export default function AddHikeNotes({ hikeId, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [text, setText] = useState("");
+
+  const handleSubmit = async () => {
+    try {
+      let formData = {
+        text: text,
+      };
+      let response = await axios.post(
+        `${URL_HOST}/api/summit/${hikeId}/note`,
+        formData
+      );
+      console.log("POST note response: ", response.data);
+      setIsModalVisible(false);
+    } catch (error) {
+      console.log("Error Posting Note: ", error);
+    }
+    refetch();
+  };
 
   return (
     <View>
@@ -32,7 +50,7 @@ export default function AddHikeNotes({ hikeId, refetch }) {
             onChangeText={(value) => setText(value)}
             placeholderTextColor="black"
             placeholder="I thought this hike was..."
-            className="bg-white p-4 rounded-md text-emerald-900 min-w-[200] min-h-[80px]"
+            className="bg-white p-4 rounded-md text-emerald-900 min-w-[200] min-h-[80px] max-w-[200]"
             multiline
             numberOfLines={4}
           />
@@ -44,7 +62,7 @@ export default function AddHikeNotes({ hikeId, refetch }) {
               <Text className=" text-white text-lg">Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => setIsModalVisible(false)}
+              onPress={() => handleSubmit()}
               className="flex justify-center p-3 bg-orange-400 rounded-lg"
             >
               <Text className=" text-white text-lg">Submit</Text>
