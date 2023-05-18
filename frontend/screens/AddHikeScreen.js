@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
+import { googleMapsKey } from "../utils/keys";
 import {
   Text,
   View,
@@ -16,12 +17,13 @@ export default function AddHikeScreen({ navigation }) {
   const [name, setName] = useState("");
   const [altitude, setAltitude] = useState("");
   const [length, setLength] = useState("");
-  const [lat, setLat] = useState("");
-  const [long, setLong] = useState("");
   const keyboardType =
     Platform.OS === "ios" ? "numbers-and-punctuation" : "decimal-pad";
   const handleSubmit = async () => {
     try {
+      let { lat, long } = await getHikeCoords(name);
+      debugger;
+      console.log();
       let formData = {
         name: name,
         altitude: parseFloat(altitude),
@@ -69,22 +71,6 @@ export default function AddHikeScreen({ navigation }) {
               keyboardType={keyboardType}
               className="bg-white p-4 rounded-md text-emerald-900"
             />
-            <TextInput
-              value={lat}
-              onChangeText={(value) => setLat(value)}
-              placeholder="Latitude Coordinates"
-              placeholderTextColor="#60605e"
-              keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md text-emerald-900"
-            />
-            <TextInput
-              value={long}
-              onChangeText={(value) => setLong(value)}
-              placeholder="Longitude Coordinates"
-              placeholderTextColor="#60605e"
-              keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md text-emerald-900"
-            />
             <TouchableOpacity
               onPress={handleSubmit}
               className="flex justify-center p-4 bg-orange-400 rounded-lg"
@@ -105,3 +91,26 @@ export default function AddHikeScreen({ navigation }) {
     </KeyboardAvoidingView>
   );
 }
+
+const getHikeCoords = async (hikeName) => {
+  debugger;
+  try {
+    let response = await axios.get(
+      `https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=${hikeName}&language=en`,
+      {
+        headers: {
+          "X-RapidAPI-Key": googleMapsKey,
+          "X-RapidAPI-Host": "google-maps-geocoding.p.rapidapi.com",
+        },
+      }
+    );
+    return {
+      lat:
+        JSON.stringify(response.data.results[0].geometry.location?.lat) || null,
+      long:
+        JSON.stringify(response.data.results[0].geometry.location?.lng) || null,
+    };
+  } catch (er) {
+    console.log("Error in Geocoding API Call: ", er);
+  }
+};
