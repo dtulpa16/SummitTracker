@@ -92,7 +92,7 @@ export default function AddHikeScreen({ navigation }) {
   );
 }
 
-const getHikeCoords = async (hikeName) => {
+export const getHikeCoords = async (hikeName) => {
   debugger;
   try {
     let response = await axios.get(
