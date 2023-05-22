@@ -46,15 +46,22 @@ export default function HikeDetailsScreen({ route, navigation }) {
       <View>
         <HikeNotes notes={data.notes} />
       </View>
+      {/* Component for uploading new images */}
+      <View className="mb-2 flex flex-row gap-2">
+        <View>
+          <ImageUpload hikeId={data._id} refetch={refetch} />
+        </View>
+        <View>
+          <AddHikeNotes hikeId={data._id} refetch={refetch} />
+        </View>
+      </View>
 
       <Text className="text-lg font-bold text-white">Pics:</Text>
 
       {/* Display hike images */}
-      <HikeImages hikeId={data._id} />
 
-      {/* Component for uploading new images */}
-      <ImageUpload hikeId={data._id} refetch={refetch} />
-      <AddHikeNotes hikeId={data._id} refetch={refetch} />
+      <HikeImages hikeId={data._id} />
+    
       <MapComponent
         latitude={data?.coordinates?.split(",")[0]}
         longitude={data?.coordinates?.split(",")[1]}

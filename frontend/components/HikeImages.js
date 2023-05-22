@@ -8,7 +8,7 @@ export default function HikeImages({ hikeId }) {
   );
 
   return !isLoading ? (
-    <ScrollView horizontal={true} className="flex flex-row -ml-3">
+    <ScrollView horizontal={true} className="flex flex-row -ml-3 mb-3">
       {data.map((image, i) => (
         <View key={i}>
           <ImageCard key={image.id} image={image} />

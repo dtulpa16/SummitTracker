@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { googleMapsKey } from "../utils/keys";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import {
   Text,
   View,
@@ -48,12 +49,16 @@ export default function AddHikeScreen({ navigation }) {
         <View className="flex-1 items-center justify-center bg-emerald-900 gap-5">
           <Text className=" text-white text-5xl">Add a New Hike</Text>
           <View className="gap-3 w-3/5">
-            <TextInput
-              value={name}
-              onChangeText={(value) => setName(value)}
-              placeholder="Hike Name"
-              placeholderTextColor="#60605e"
-              className="bg-white p-4 rounded-md text-emerald-900"
+            <GooglePlacesAutocomplete
+              placeholder="Search"
+              onPress={(data, details = null) => {
+                // 'details' is provided when fetchDetails = true
+                console.log(data, details);
+              }}
+              query={{
+                key: "AIzaSyAzVKIKNZK6WDeY8rJbI_p5a5nY65TM3Pc",
+                language: "en",
+              }}
             />
             <TextInput
               value={altitude}
@@ -92,7 +97,7 @@ export default function AddHikeScreen({ navigation }) {
   );
 }
 
-const getHikeCoords = async (hikeName) => {
+export const getHikeCoords = async (hikeName) => {
   debugger;
   try {
     let response = await axios.get(
@@ -111,6 +116,9 @@ const getHikeCoords = async (hikeName) => {
         JSON.stringify(response.data.results[0].geometry.location?.lng) || null,
     };
   } catch (er) {
-    console.log("Error in Geocoding API Call: ", er);
+    return {
+      lat: null,
+      long: null,
+    };
   }
 };
