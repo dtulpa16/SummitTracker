@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { Modal, Button, View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
 import useFetch from "../hooks/useFetch";
 import HikeNotes from "../components/HikeNotes";
 import { URL_HOST } from "../utils/urlHost";
@@ -31,8 +31,13 @@ export default function HikeDetailsScreen({ route, navigation }) {
   if (isLoading) return <Text>Loading...</Text>;
 
   // If data has loaded, display hike details
-  return (
-    <View className="flex-1 items-start bg-emerald-900 pl-4 pt-4 gap-2">
+  return data ? (
+    <ScrollView
+      contentContainerStyle={{
+        alignItems: "flex-start",
+      }}
+      className=" bg-emerald-900 pl-4 pt-4 gap-2"
+    >
       <Text className="text-4xl font-bold text-white">{data?.name}</Text>
       <Text className="text-xl font-bold text-white">{formatDate()}</Text>
       <Text className="text-lg font-bold text-white">
@@ -48,35 +53,35 @@ export default function HikeDetailsScreen({ route, navigation }) {
         <HikeNotes notes={data.notes} />
       </View>
       {/* Component for uploading new images */}
-      <View className="mb-2 flex flex-row gap-2">
+      <View className="mb-2 flex flex-row gap-2 flex-wrap">
         <View>
           <ImageUpload hikeId={data._id} refetch={refetch} />
         </View>
         <View>
           <AddHikeNotes hikeId={data._id} refetch={refetch} />
         </View>
-      </View>
-
-      <Text className="text-lg font-bold text-white">Pics:</Text>
-
-      {/* Display hike images */}
-
-      {/* Component for uploading new images */}
-      <View className="flex flex-row flex-wrap">
-        <ImageUpload hikeId={data._id} refetch={refetch} />
-        <AddHikeNotes hikeId={data._id} refetch={refetch} />
-        <EditHikeDetailsModal data={data} refetch={refetch} />
-        <TouchableOpacity
-          onPress={() => console.log("Delete Pressed!")}
-          className="flex justify-center p-3 bg-orange-400 rounded-lg"
-        >
-          <Text className=" text-white text-lg">Delete Hike</Text>
-        </TouchableOpacity>
+        <View>
+          <EditHikeDetailsModal data={data} refetch={refetch} />
+        </View>
+        <View>
+          <TouchableOpacity
+            onPress={() => console.log("Delete Pressed!")}
+            className="flex justify-center p-3 bg-orange-400 rounded-lg"
+          >
+            <Text className=" text-white text-lg">Delete Hike</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <MapComponent
         latitude={data?.coordinates?.split(",")[0]}
         longitude={data?.coordinates?.split(",")[1]}
       />
-    </View>
+      <Text className="text-lg font-bold text-white">Pics:</Text>
+
+      {/* Display hike images */}
+      <HikeImages hikeId={data._id} />
+    </ScrollView>
+  ) : (
+    <Text>Loading...</Text>
   );
 }

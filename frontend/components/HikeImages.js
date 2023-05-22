@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, ScrollView } from "react-native";
+import { View, Text, Image, FlatList, ScrollView } from "react-native";
 import useFetch from "../hooks/useFetch";
 import { URL_HOST } from "../utils/urlHost";
 export default function HikeImages({ hikeId }) {
@@ -8,13 +8,13 @@ export default function HikeImages({ hikeId }) {
   );
 
   return !isLoading ? (
-    <ScrollView horizontal={true} className="flex flex-row -ml-3 mb-3">
+    <View className="flex flex-row -ml-3 flex-wrap">
       {data.map((image, i) => (
         <View key={i}>
           <ImageCard key={image.id} image={image} />
         </View>
       ))}
-    </ScrollView>
+    </View>
   ) : (
     <Text>Loading...</Text>
   );
