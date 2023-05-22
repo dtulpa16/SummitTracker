@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import useFetch from "../hooks/useFetch";
 import HikeNotes from "../components/HikeNotes";
 import { URL_HOST } from "../utils/urlHost";
@@ -7,6 +7,7 @@ import HikeImages from "../components/HikeImages";
 import ImageUpload from "../components/ImageUpload";
 import MapComponent from "../components/MapComponent";
 import AddHikeNotes from "../components/AddHikeNotesModal";
+import EditHikeDetailsModal from "../components/EditHikeDetailsModal";
 
 // HikeDetailsScreen is the main component for displaying details of a hike.
 export default function HikeDetailsScreen({ route, navigation }) {
@@ -60,8 +61,18 @@ export default function HikeDetailsScreen({ route, navigation }) {
 
       {/* Display hike images */}
 
-      <HikeImages hikeId={data._id} />
-    
+      {/* Component for uploading new images */}
+      <View className="flex flex-row flex-wrap">
+        <ImageUpload hikeId={data._id} refetch={refetch} />
+        <AddHikeNotes hikeId={data._id} refetch={refetch} />
+        <EditHikeDetailsModal data={data} refetch={refetch} />
+        <TouchableOpacity
+          onPress={() => console.log("Delete Pressed!")}
+          className="flex justify-center p-3 bg-orange-400 rounded-lg"
+        >
+          <Text className=" text-white text-lg">Delete Hike</Text>
+        </TouchableOpacity>
+      </View>
       <MapComponent
         latitude={data?.coordinates?.split(",")[0]}
         longitude={data?.coordinates?.split(",")[1]}
