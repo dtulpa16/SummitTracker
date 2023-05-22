@@ -49,16 +49,13 @@ export default function AddHikeScreen({ navigation }) {
         <View className="flex-1 items-center justify-center bg-emerald-900 gap-5">
           <Text className=" text-white text-5xl">Add a New Hike</Text>
           <View className="gap-3 w-3/5">
-            <GooglePlacesAutocomplete
-              placeholder="Search"
-              onPress={(data, details = null) => {
-                // 'details' is provided when fetchDetails = true
-                console.log(data, details);
-              }}
-              query={{
-                key: "AIzaSyAzVKIKNZK6WDeY8rJbI_p5a5nY65TM3Pc",
-                language: "en",
-              }}
+          <TextInput
+              value={name}
+              onChangeText={(value) => setName(value)}
+              placeholder="Hike Name"
+              placeholderTextColor="#60605e"
+              keyboardType={keyboardType}
+              className="bg-white p-4 rounded-md text-emerald-900"
             />
             <TextInput
               value={altitude}
