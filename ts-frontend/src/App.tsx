@@ -3,14 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import HikeDetailsPage from "./pages/HikeDetailsPage";
+import { RouteObject } from "./interfaces/Route";
 
-interface RouteObject {
-  path: string;
-  element: React.ReactElement;
-}
 
 function App() {
-  const [routes, setRoutes] = useState<RouteObject[]>([
+  const [routes] = useState<RouteObject[]>([
     {
       path: "/",
       element: <HomePage />,
