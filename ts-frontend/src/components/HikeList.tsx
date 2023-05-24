@@ -7,7 +7,7 @@ export default function HikeList() {
     const fetchHikes = async () => {
       try {
         let response = await axios.get<Hike[]>(
-          "http://localhost:5000/api/summit/"
+          `${process.env.REACT_APP_URL_HOST}/api/summit/`
         );
         debugger
         setHikes(response.data);
