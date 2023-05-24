@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import HikeList from "../components/HikeList";
 
 export default function HomePage() {
   return (
-    <div>Home</div>
-  )
+    <div>
+      <HikeList />
+    </div>
+  );
 }
