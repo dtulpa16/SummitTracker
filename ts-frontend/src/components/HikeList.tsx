@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,FC } from "react";
 import { Hike } from "../interfaces/Hike";
 import axios from "axios";
 export default function HikeList() {
@@ -19,3 +19,11 @@ export default function HikeList() {
   }, []);
   return <div>HikeList</div>;
 }
+interface HikeMapperProps {
+  hikes:Hike[]
+}
+
+const HikeMapper : FC<HikeMapperProps> = ({hikes}) => {
+  return<></>
+}
+
