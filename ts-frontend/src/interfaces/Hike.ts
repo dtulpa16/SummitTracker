@@ -1,6 +1,6 @@
 import { Note } from "./Note";
 export interface Hike {
-  id: string;
+  _id: string;
   name: string;
   coordinates: string;
   length: number;
