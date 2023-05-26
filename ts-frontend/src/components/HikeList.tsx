@@ -68,11 +68,11 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
   }, [image]);
   return image ? (
     <div className="flex flex-row">
-      <div>
+      <div className="h-[250px] w-[250px] bg-slate-400">
         <img
           src={`${process.env.REACT_APP_URL_HOST}${image[imageIndex]?.imageUrl || null}`}
           alt={hike.name}
-          width="250"
+          className="object-cover h-[100%] w-[100%]"
         />
       </div>
     </div>
