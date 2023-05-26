@@ -5,6 +5,6 @@ export interface Hike {
   coordinates: string;
   length: number;
   altitude: number;
-  date: Date;
+  date: string;
   notes: Note[];
 }
