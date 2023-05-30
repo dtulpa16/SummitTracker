@@ -1,6 +1,6 @@
 const { Hike, Note } = require("../models/summit");
 async function getAllHikes() {
-  let response = await Hike.find({});
+  let response = await Hike.find({}).populate("notes");
   return response;
 }
 
