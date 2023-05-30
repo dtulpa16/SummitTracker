@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/solid";
 import { Image } from "../interfaces/Image";
 import axios from "axios";
+
 export default function HikeList() {
   const [hikes, setHikes] = useState<Hike[]>([]);
   useEffect(() => {
@@ -31,7 +32,7 @@ interface HikeMapperProps {
 
 const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
   return (
-    <div className="flex flex-col gap-2 md:w-1/3">
+    <div className="flex flex-col gap-2 md:w-1/2">
       {hikes.length ? (
         hikes.map((hike, index) => (
           <div
@@ -72,7 +73,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setImageIndex((prevImageIndex) => (prevImageIndex + 1) % image.length);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [image]);
 

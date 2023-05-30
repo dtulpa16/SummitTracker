@@ -18,7 +18,7 @@ function App() {
     },
   ]);
   return (
-    <>
+    <div className="w-4/5 mx-auto">
       <Router>
         <Routes>
           {routes.map((route, index) => (
@@ -26,7 +26,7 @@ function App() {
           ))}
         </Routes>
       </Router>
-    </>
+    </div>
   );
 }
 
