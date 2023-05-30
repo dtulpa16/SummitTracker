@@ -1,6 +1,6 @@
 import React, { useState, useEffect, FC } from "react";
 import { Hike } from "../interfaces/Hike";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import {
   CalendarIcon,
   ArrowCircleUpIcon,
@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/solid";
 import { Image } from "../interfaces/Image";
 import axios from "axios";
+import { useTheme } from "../context/ThemeContext";
 
 export default function HikeList() {
   const [hikes, setHikes] = useState<Hike[]>([]);
@@ -31,13 +32,16 @@ interface HikeMapperProps {
 }
 
 const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
+  const [theme] = useTheme();
   return (
-    <div className="flex flex-col gap-2 md:w-1/2">
+    <div className="flex flex-col">
       {hikes.length ? (
         hikes.map((hike, index) => (
           <div
             key={index}
-            className="bg-blue-500 text-white p-4 rounded shadow-lg"
+            className={`${
+              theme === "dark" ? "bg-gray-800" : "bg-blue-500"
+            } text-white p-4 shadow-lg`}
           >
             <HikeCard hike={hike} />
           </div>
