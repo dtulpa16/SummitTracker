@@ -34,14 +34,18 @@ interface HikeMapperProps {
 const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
   const [theme] = useTheme();
   return (
-    <div className="flex flex-col">
+    <div
+      className={`flex h-screen flex-col ${
+        theme === "dark" ? "bg-gray-800" : "bg-blue-500"
+      }`}
+    >
       {hikes.length ? (
         hikes.map((hike, index) => (
           <div
             key={index}
             className={`${
               theme === "dark" ? "bg-gray-800" : "bg-blue-500"
-            } text-white p-4 shadow-lg`}
+            } text-white p-4`}
           >
             <HikeCard hike={hike} />
           </div>
@@ -82,7 +86,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
   }, [image]);
 
   return image ? (
-    <div className="flex flex-row justify-between">
+    <div className="flex flex-row justify-between md:max-w-7xl md:mx-auto rounded shadow-md p-4">
       <div className="flex flex-col gap-1 text-white">
         <h2 className="font-bold text-xl">{hike.name}</h2>
         <h3 className="flex items-center gap-2">

@@ -13,11 +13,11 @@ const Navbar: React.FC<NavbarProps> = () => {
         theme === "dark" ? "bg-gray-800" : "bg-blue-500"
       } text-white`}
     >
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto md:px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
-          <div className="flex items-center px-2 lg:px-0">
+          <div className="flex items-center px-1 lg:px-0">
             <MountainIcon />
-            <div className="ml-2 text-2xl font-semibold">Summit Tracker</div>
+            <div className="ml-1 md:text-2xl text-lg font-semibold">Summit Tracker</div>
           </div>
           <div className="lg:ml-4 lg:flex lg:items-center">
             <button
