@@ -6,6 +6,7 @@ import {
   ArrowCircleUpIcon,
   LocationMarkerIcon,
   DocumentTextIcon,
+  DotsVerticalIcon,
 } from "@heroicons/react/solid";
 import { Image } from "../interfaces/Image";
 import axios from "axios";
@@ -91,7 +92,16 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
       } flex flex-row justify-between md:max-w-6xl md:mx-auto rounded shadow-md p-4 `}
     >
       <div className="flex flex-col gap-1 text-white">
-        <h2 className="font-bold text-xl">{hike.name}</h2>
+        <div className="flex md:flex-row flex-col-reverse flex-wrap gap-2 justify-between md:w-[220px]">
+          <h2 className="font-bold text-xl">{hike.name}</h2>
+          <DotsVerticalIcon
+            className={`w-7 text-white ${
+              theme === "dark"
+                ? "bg-gray-600"
+                : "bg-white text-blue-500 cursor-pointer"
+            } rounded-full p-[2px]`}
+          />
+        </div>
         <h3 className="flex items-center gap-2">
           <CalendarIcon className="h-5 w-5" />
           {hike.date.split("T")[0]}
@@ -104,11 +114,13 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
           <LocationMarkerIcon className="h-5 w-5" />
           {hike.length} Miles
         </h3>
-        <h3 className="flex items-center gap-2">
-          <DocumentTextIcon className="h-5 w-5" />
-          Notes
-        </h3>
-        <NoteList notes={hike.notes} />
+        <div>
+          <h3 className="flex items-center gap-2">
+            <DocumentTextIcon className="h-5 w-5" />
+            Notes
+          </h3>
+          <NoteList notes={hike.notes} />
+        </div>
       </div>
       <div className="h-[250px] w-[250px] bg-slate-400 relative overflow-hidden">
         <TransitionGroup>
