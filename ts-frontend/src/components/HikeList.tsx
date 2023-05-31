@@ -5,10 +5,12 @@ import {
   CalendarIcon,
   ArrowCircleUpIcon,
   LocationMarkerIcon,
+  DocumentTextIcon,
 } from "@heroicons/react/solid";
 import { Image } from "../interfaces/Image";
 import axios from "axios";
 import { useTheme } from "../context/ThemeContext";
+import NoteList from "./NoteList";
 
 export default function HikeList() {
   const [hikes, setHikes] = useState<Hike[]>([]);
@@ -18,7 +20,6 @@ export default function HikeList() {
         let response = await axios.get<Hike[]>(
           `${process.env.REACT_APP_URL_HOST}/api/summit/`
         );
-        debugger
         setHikes(response.data);
       } catch (er) {
         console.log(er);
@@ -28,6 +29,7 @@ export default function HikeList() {
   }, []);
   return <HikeMapper hikes={hikes} />;
 }
+
 interface HikeMapperProps {
   hikes: Hike[];
 }
@@ -102,6 +104,11 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
           <LocationMarkerIcon className="h-5 w-5" />
           {hike.length} Miles
         </h3>
+        <h3 className="flex items-center gap-2">
+          <DocumentTextIcon className="h-5 w-5" />
+          Notes
+        </h3>
+        <NoteList notes={hike.notes} />
       </div>
       <div className="h-[250px] w-[250px] bg-slate-400 relative overflow-hidden">
         <TransitionGroup>
