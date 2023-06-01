@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button } from "../interfaces/Button";
 import { DotsVerticalIcon } from "@heroicons/react/solid";
+import ImagePreviewModal from "./ImagePreviewModal";
 const options: Button[] = [
   {
     label: "Add Note",
@@ -8,7 +9,7 @@ const options: Button[] = [
   },
   {
     label: "Add Image",
-    onClick: () => console.log("Button 2 clicked"),
+    onClick: () => {},
   },
   {
     label: "Edit Hike",
@@ -22,6 +23,19 @@ type ThemeProps = {
 
 const HikeOptionsMenu: React.FC<ThemeProps> = ({ theme }) => {
   const [showOptions, setShowOptions] = useState<Boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [image, setImage] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  options[1].onClick = () => fileInputRef.current?.click(); // Overwrite the onClick of the "Add Image" button
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    if (file) {
+      setImage(file); // Do something with the file
+      setShowModal(true);
+    }
+  };
   return (
     <div className="">
       <DotsVerticalIcon
@@ -31,6 +45,12 @@ const HikeOptionsMenu: React.FC<ThemeProps> = ({ theme }) => {
             ? "bg-gray-600 text-white "
             : "bg-white text-blue-500 "
         } rounded-full p-[2px] cursor-pointer`}
+      />
+      <input
+        type="file"
+        onChange={handleFileChange}
+        ref={fileInputRef}
+        className="hidden"
       />
       {showOptions ? (
         <div
@@ -47,6 +67,15 @@ const HikeOptionsMenu: React.FC<ThemeProps> = ({ theme }) => {
           ))}
         </div>
       ) : null}
+      {image && (
+        <ImagePreviewModal
+          image={image}
+          setImage={setImage}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          theme={theme}
+        />
+      )}
     </div>
   );
 };
