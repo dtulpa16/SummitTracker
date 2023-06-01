@@ -12,6 +12,7 @@ import { Image } from "../interfaces/Image";
 import axios from "axios";
 import { useTheme } from "../context/ThemeContext";
 import NoteList from "./NoteList";
+import HikeOptionsMenu from "./HikeOptionsMenu";
 
 export default function HikeList() {
   const [hikes, setHikes] = useState<Hike[]>([]);
@@ -94,13 +95,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
       <div className="flex flex-col gap-1 text-white">
         <div className="flex md:flex-row flex-col-reverse flex-wrap gap-2 justify-between md:w-[220px]">
           <h2 className="font-bold text-xl">{hike.name}</h2>
-          <DotsVerticalIcon
-            className={`w-7 text-white ${
-              theme === "dark"
-                ? "bg-gray-600"
-                : "bg-white text-blue-500 cursor-pointer"
-            } rounded-full p-[2px]`}
-          />
+          <HikeOptionsMenu theme={theme} />
         </div>
         <h3 className="flex items-center gap-2">
           <CalendarIcon className="h-5 w-5" />
