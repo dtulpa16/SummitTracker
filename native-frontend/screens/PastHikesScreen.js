@@ -4,7 +4,7 @@ import useFetch from "../hooks/useFetch";
 const PastHikesScreen = ({ navigation }) => {
   const { data, isLoading, error } = useFetch(`${URL_HOST}/api/summit/`);
   return !isLoading && data ? (
-    <View className="flex-1 items-center justify-center bg-emerald-900">
+    <View className="flex-1 items-center justify-center bg-blue-950">
       <Text className=" text-white text-5xl">Past Hikes</Text>
       <View className="flex flex-col gap-5">
         {data.length > 0 ? (
