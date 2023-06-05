@@ -43,13 +43,13 @@ export default function AddHikeScreen({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      className=" bg-emerald-900 flex-1"
+      className=" bg-blue-950 flex-1"
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-        <View className="flex-1 items-center justify-center bg-emerald-900 gap-5">
+        <View className="flex-1 items-center justify-center bg-blue-950 gap-5">
           <Text className=" text-white text-5xl">Add a New Hike</Text>
           <View className="gap-3 w-3/5">
-          <TextInput
+            <TextInput
               value={name}
               onChangeText={(value) => setName(value)}
               placeholder="Hike Name"

@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Modal, Button, View, Image, Text, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  Modal,
+  Button,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import useFetch from "../hooks/useFetch";
 import HikeNotes from "../components/HikeNotes";
 import { URL_HOST } from "../utils/urlHost";
@@ -36,7 +44,7 @@ export default function HikeDetailsScreen({ route, navigation }) {
       contentContainerStyle={{
         alignItems: "flex-start",
       }}
-      className=" bg-emerald-900 pl-4 pt-4 gap-2"
+      className=" bg-blue-950 pl-4 pt-4 gap-2"
     >
       <Text className="text-4xl font-bold text-white">{data?.name}</Text>
       <Text className="text-xl font-bold text-white">{formatDate()}</Text>
