@@ -19,6 +19,7 @@ import axios from "axios";
 import { useTheme } from "../context/ThemeContext";
 import NoteList from "./NoteList";
 import HikeOptionsMenu from "./HikeOptionsMenu";
+import AddHikeModal from "./AddHikeModal";
 
 type HikeFetchType = () => void;
 export const HikeFetchContext = createContext<HikeFetchType | undefined>(
@@ -26,6 +27,7 @@ export const HikeFetchContext = createContext<HikeFetchType | undefined>(
 );
 export default function HikeList() {
   const [hikes, setHikes] = useState<Hike[]>([]);
+
   useEffect(() => {
     fetchHikes();
   }, []);
@@ -51,29 +53,35 @@ interface HikeMapperProps {
 }
 
 const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
+
   const [theme] = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div
-      className={`flex h-full flex-col ${
-        theme === "dark" ? "bg-gray-600" : "bg-white"
-      }`}
-    >
-      <h1
-        className={`${
-          theme === "dark" ? "bg-gray-800" : "bg-blue-500"
-        } mt-4 md:max-w-6xl md:mx-auto p-3 text-white px-5 hover:scale-105 hover:cursor-pointer duration-100 font-semibold rounded`}
+    <div>
+      <div
+        className={`flex h-full flex-col ${
+          theme === "dark" ? "bg-gray-600" : "bg-white"
+        }`}
       >
-        Add Hike
-      </h1>
-      {hikes.length ? (
-        hikes.map((hike, index) => (
-          <div key={index} className={` text-white p-4`}>
-            <HikeCard hike={hike} />
-          </div>
-        ))
-      ) : (
-        <p>No hikes to display</p>
-      )}
+        <h1
+          onClick={() => setIsOpen(true)}
+          className={`${
+            theme === "dark" ? "bg-gray-800" : "bg-blue-500"
+          } mt-4 md:max-w-6xl md:mx-auto p-3 text-white px-5 hover:scale-105 hover:cursor-pointer duration-100 font-semibold rounded`}
+        >
+          Add Hike
+        </h1>
+        {hikes.length ? (
+          hikes.map((hike, index) => (
+            <div key={index} className={` text-white p-4`}>
+              <HikeCard hike={hike} />
+            </div>
+          ))
+        ) : (
+          <p>No hikes to display</p>
+        )}
+      </div>
+      <AddHikeModal isOpen={isOpen} theme={theme} setIsOpen={setIsOpen} />
     </div>
   );
 };
