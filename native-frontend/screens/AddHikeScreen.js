@@ -55,7 +55,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Hike Name"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md text-emerald-900"
+              className="bg-white p-4 rounded-md text-blue-950"
             />
             <TextInput
               value={altitude}
@@ -63,7 +63,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Altitude"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md text-emerald-900"
+              className="bg-white p-4 rounded-md text-blue-950"
             />
             <TextInput
               value={length}
@@ -71,22 +71,24 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Length (miles)"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md text-emerald-900"
+              className="bg-white p-4 rounded-md text-blue-950"
             />
+          </View>
+          <View className="flex flex-row gap-10 justify-center">
             <TouchableOpacity
               onPress={handleSubmit}
-              className="flex justify-center p-4 bg-orange-400 rounded-lg"
+              className="flex justify-center p-4 bg-orange-100 rounded-lg"
             >
-              <Text className=" text-white text-xl">Submit</Text>
+              <Text className="text-blue-950 text-xl font-bold">Submit</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              className="flex justify-center p-4 bg-orange-100 rounded-lg"
+            >
+              <Text className="text-blue-950 text-xl font-bold">Cancel</Text>
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            className="flex justify-center p-4 bg-orange-400 rounded-lg"
-          >
-            <Text className=" text-white text-xl">Return Home</Text>
-          </TouchableOpacity>
           <StatusBar style="auto" />
         </View>
       </TouchableWithoutFeedback>
