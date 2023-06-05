@@ -1,10 +1,13 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { Hike } from "../interfaces/Hike";
+import axios from "axios";
+import { HikeFetchContext } from "./HikeList";
 type ImageProps = {
   image: File;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   setImage: React.Dispatch<React.SetStateAction<File | null>>;
   showModal: true | false;
+  hike: Hike;
 };
 
 type ThemeProps = {
@@ -17,9 +20,31 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
   showModal,
   setShowModal,
   theme,
+  hike,
 }) => {
-  const handleSubmit = async () => {};
-  return showModal ? (
+  const fetchHikes = useContext(HikeFetchContext);
+  const handleSubmit = async () => {
+    let formData: FormData = new FormData();
+    formData.append("imageUrl", image);
+    try {
+      let response = await axios.post<Hike>(
+        `http://localhost:5000/api/image/${hike._id}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      fetchHikes && fetchHikes()
+      console.log(response.data);
+    } catch (er) {
+      console.log("Error in posting hike image: ", er);
+    }
+    setShowModal(false);
+    setImage(null);
+  };
+  return showModal && image ? (
     <div
       className={`${
         theme === "dark" ? "md:bg-gray-600 bg-gray-900 text-white" : "bg-white"
@@ -28,9 +53,9 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
       <div
         className={`${
           theme === "dark" ? "bg-gray-600 text-white" : "bg-white"
-        } p-8 rounded shadow-md z-50`}
+        } p-8 md:p-12 rounded shadow-md z-50 md:w-auto w-11/12`}
       >
-        <h2 className="mb-4 text-lg font-bold">Image Preview</h2>
+        <h2 className="mb-4 text-xl font-bold">Image Preview</h2>
         <img
           src={URL.createObjectURL(image)}
           className="md:w-[300px]"
@@ -49,8 +74,8 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
           </button>
           <button
             onClick={() => {
-              setShowModal(false);
               setImage(null);
+              setShowModal(false);
             }}
             className={`${
               theme === "dark"

@@ -26,7 +26,6 @@ async function deleteHikeById(id) {
 }
 
 async function addNote(id, data) {
-
   const hike = await Hike.findById({ _id: id });
 
   const note = new Note(data);
@@ -34,6 +33,11 @@ async function addNote(id, data) {
 
   hike.notes.push(note._id);
   await hike.save();
+}
+
+async function getTotalAltitude() {
+  let response = await Hike.find({});
+  return response;
 }
 
 async function fetchNotes(req) {
@@ -49,5 +53,6 @@ module.exports = {
   createHike,
   deleteHikeById,
   addNote,
-  fetchNotes
+  fetchNotes,
+  getTotalAltitude,
 };
