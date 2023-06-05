@@ -1,4 +1,10 @@
-import React, { useState, useEffect, FC } from "react";
+import React, {
+  useState,
+  useEffect,
+  FC,
+  useContext,
+  createContext,
+} from "react";
 import { Hike } from "../interfaces/Hike";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import {
@@ -13,23 +19,33 @@ import axios from "axios";
 import { useTheme } from "../context/ThemeContext";
 import NoteList from "./NoteList";
 import HikeOptionsMenu from "./HikeOptionsMenu";
+import AddHikeModal from "./AddHikeModal";
 
+type HikeFetchType = () => void;
+export const HikeFetchContext = createContext<HikeFetchType | undefined>(
+  undefined
+);
 export default function HikeList() {
   const [hikes, setHikes] = useState<Hike[]>([]);
+
   useEffect(() => {
-    const fetchHikes = async () => {
-      try {
-        let response = await axios.get<Hike[]>(
-          `${process.env.REACT_APP_URL_HOST}/api/summit/`
-        );
-        setHikes(response.data);
-      } catch (er) {
-        console.log(er);
-      }
-    };
     fetchHikes();
   }, []);
-  return <HikeMapper hikes={hikes} />;
+  const fetchHikes = async () => {
+    try {
+      let response = await axios.get<Hike[]>(
+        `${process.env.REACT_APP_URL_HOST}/api/summit/`
+      );
+      setHikes(response.data);
+    } catch (er) {
+      console.log(er);
+    }
+  };
+  return (
+    <HikeFetchContext.Provider value={fetchHikes}>
+      <HikeMapper hikes={hikes} />
+    </HikeFetchContext.Provider>
+  );
 }
 
 interface HikeMapperProps {
@@ -37,22 +53,35 @@ interface HikeMapperProps {
 }
 
 const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
+
   const [theme] = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <div
-      className={`flex h-full flex-col ${
-        theme === "dark" ? "bg-gray-600" : "bg-white"
-      }`}
-    >
-      {hikes.length ? (
-        hikes.map((hike, index) => (
-          <div key={index} className={` text-white p-4`}>
-            <HikeCard hike={hike} />
-          </div>
-        ))
-      ) : (
-        <p>No hikes to display</p>
-      )}
+    <div>
+      <div
+        className={`flex h-full flex-col ${
+          theme === "dark" ? "bg-gray-600" : "bg-white"
+        }`}
+      >
+        <h1
+          onClick={() => setIsOpen(true)}
+          className={`${
+            theme === "dark" ? "bg-gray-800" : "bg-blue-500"
+          } mt-4 md:max-w-6xl md:mx-auto p-3 text-white px-5 hover:scale-105 hover:cursor-pointer duration-100 font-semibold rounded`}
+        >
+          Add Hike
+        </h1>
+        {hikes.length ? (
+          hikes.map((hike, index) => (
+            <div key={index} className={` text-white p-4`}>
+              <HikeCard hike={hike} />
+            </div>
+          ))
+        ) : (
+          <p>No hikes to display</p>
+        )}
+      </div>
+      <AddHikeModal isOpen={isOpen} theme={theme} setIsOpen={setIsOpen} />
     </div>
   );
 };
@@ -95,7 +124,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
       <div className="flex flex-col gap-1 text-white">
         <div className="flex md:flex-row flex-col-reverse flex-wrap gap-2 justify-between md:w-[220px]">
           <h2 className="font-bold text-xl">{hike.name}</h2>
-          <HikeOptionsMenu theme={theme} />
+          <HikeOptionsMenu theme={theme} hike={hike} />
         </div>
         <h3 className="flex items-center gap-2">
           <CalendarIcon className="h-5 w-5" />

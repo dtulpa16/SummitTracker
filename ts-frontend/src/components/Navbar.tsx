@@ -5,7 +5,7 @@ import { useTheme } from "../context/ThemeContext";
 interface NavbarProps {}
 
 const Navbar: React.FC<NavbarProps> = () => {
-    const [theme, themeToggler] = useTheme();
+  const [theme, themeToggler] = useTheme();
 
   return (
     <nav
@@ -17,7 +17,9 @@ const Navbar: React.FC<NavbarProps> = () => {
         <div className="relative flex items-center justify-between h-16">
           <div className="flex items-center px-1 lg:px-0">
             <MountainIcon />
-            <div className="ml-1 md:text-2xl text-lg font-semibold">Summit Tracker</div>
+            <div className="ml-1 md:text-2xl text-lg font-semibold">
+              Summit Tracker
+            </div>
           </div>
           <div className="lg:ml-4 lg:flex lg:items-center">
             <button

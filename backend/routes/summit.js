@@ -9,6 +9,7 @@ const {
   deleteHikeById,
   addNote,
   fetchNotes,
+  getTotalAltitude,
 } = require("../controllers/hikeControllers.js");
 
 router.get("/", async (req, res) => {
@@ -69,4 +70,14 @@ router.delete("/:id", async (req, res) => {
   return res.status(204).send(result);
 });
 
+
+router.get("/altitude", async (req, res) => {
+  try {
+    let response = await getTotalAltitude();
+    console.log(response);
+    return res.status(200).send(response);
+  } catch (er) {
+    return res.status(500).send(er);
+  }
+});
 module.exports = router;
