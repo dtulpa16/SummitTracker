@@ -16,7 +16,8 @@ import ImageUpload from "../components/ImageUpload";
 import MapComponent from "../components/MapComponent";
 import AddHikeNotes from "../components/AddHikeNotesModal";
 import EditHikeDetailsModal from "../components/EditHikeDetailsModal";
-
+import MapModal from "../components/MapModal";
+import DeleteIcon from "../assets/trashIcon.svg";
 // HikeDetailsScreen is the main component for displaying details of a hike.
 export default function HikeDetailsScreen({ route, navigation }) {
   // Destructure hikeId from route parameters
@@ -54,14 +55,18 @@ export default function HikeDetailsScreen({ route, navigation }) {
       <Text className="text-lg font-bold text-orange-50">
         Altitude: {data?.altitude} ft
       </Text>
-      <Text className="text-lg font-bold text-orange-50">Notes</Text>
+      <Text className="text-lg font-bold text-orange-50">Notes:</Text>
 
       {/* Display hike notes */}
       <View>
         <HikeNotes notes={data.notes} />
       </View>
+      <Text className="text-lg font-bold text-orange-50">Photos:</Text>
+
+      {/* Display hike images */}
+      <HikeImages hikeId={data._id} />
       {/* Component for uploading new images */}
-      <View className="mb-2 flex flex-row gap-2 flex-wrap">
+      <View className="mb-2 flex flex-row gap-4 m-auto justify-center items-center">
         <View>
           <ImageUpload hikeId={data._id} refetch={refetch} />
         </View>
@@ -72,24 +77,21 @@ export default function HikeDetailsScreen({ route, navigation }) {
           <EditHikeDetailsModal data={data} refetch={refetch} />
         </View>
         <View>
+          <MapModal
+            latitude={data?.coordinates?.split(",")[0]}
+            longitude={data?.coordinates?.split(",")[1]}
+            hikeName={data?.name}
+          />
+        </View>
+        <View>
           <TouchableOpacity
             onPress={() => console.log("Delete Pressed!")}
-            className="flex justify-center p-4 bg-orange-100 rounded-lg"
+            className="flex justify-center p-3 bg-orange-100 rounded-full"
           >
-            <Text className=" text-blue-950 text-xl font-bold">
-              Delete Hike
-            </Text>
+            <DeleteIcon width={35} height={35} />
           </TouchableOpacity>
         </View>
       </View>
-      <MapComponent
-        latitude={data?.coordinates?.split(",")[0]}
-        longitude={data?.coordinates?.split(",")[1]}
-      />
-      <Text className="text-lg font-bold text-white">Pics:</Text>
-
-      {/* Display hike images */}
-      <HikeImages hikeId={data._id} />
     </ScrollView>
   ) : (
     <Text>Loading...</Text>
