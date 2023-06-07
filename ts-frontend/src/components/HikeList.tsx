@@ -118,7 +118,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
     <div
       className={`${
         theme === "dark" ? "bg-gray-800" : "bg-blue-500"
-      } flex flex-row justify-between md:max-w-6xl md:mx-auto rounded shadow-md p-4 `}
+      } flex flex-row justify-between md:max-w-6xl md:mx-auto rounded shadow-md p-3 md:min-h-max min-h-[310px]`}
     >
       <div className="flex flex-col gap-1 text-white">
         <div className="flex md:flex-row flex-col-reverse flex-wrap gap-2 justify-between md:w-[220px]">
@@ -145,7 +145,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
           <NoteList notes={hike.notes} />
         </div>
       </div>
-      <div className="h-[250px] w-[250px] bg-slate-400 relative overflow-hidden">
+      <div className="h-[250px] md:w-[250px] min-w-[180px] bg-slate-400 relative overflow-hidden">
         <TransitionGroup>
           <CSSTransition
             key={image[imageIndex]?.imageUrl}
