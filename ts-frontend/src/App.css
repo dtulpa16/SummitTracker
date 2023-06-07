@@ -20,3 +20,13 @@
   opacity: 0;
   transition: transform 500ms, opacity 500ms;
 }
+
+/* For Chrome and Safari */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+}

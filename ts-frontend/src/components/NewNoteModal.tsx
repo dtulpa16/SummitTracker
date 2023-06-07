@@ -54,7 +54,7 @@ const NewNoteModal: React.FC<ThemeProps & ModalProps> = ({
             name="name"
             value={text}
             onChange={(e) => settext(e.target.value)}
-            placeholder="Hike Name"
+            placeholder="New Note"
             className={`mb-4 md:w-[450px] border rounded p-2 ${
               theme === "dark" ? "bg-gray-500 text-white" : "bg-gray-200"
             }`}
