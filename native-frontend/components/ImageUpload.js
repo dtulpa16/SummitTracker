@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Image, View, TouchableOpacity, Text } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import SelectedImagesModal from "./SelectedImagesModal";
+import AddPhotoIcon from "../assets/addPhotoIcon.svg";
 
 // This is the main component for handling image selection and upload.
 export default function ImageUpload({ hikeId, refetch }) {
@@ -47,9 +48,9 @@ export default function ImageUpload({ hikeId, refetch }) {
       {/* Button to open the image picker */}
       <TouchableOpacity
         onPress={pickImage}
-        className="flex justify-center p-4 bg-orange-100 rounded-lg"
+        className="flex justify-center p-3 bg-orange-100 rounded-full"
       >
-        <Text className=" text-blue-950 font-bold text-xl">Upload Images</Text>
+        <AddPhotoIcon height={35} width={35} />
       </TouchableOpacity>
       {/* If there are selected images, show the modal */}
       {selectedImages.length > 0 && (

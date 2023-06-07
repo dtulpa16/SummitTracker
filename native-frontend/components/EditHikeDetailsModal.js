@@ -13,6 +13,9 @@ import { googleMapsKey } from "../utils/keys";
 import axios from "axios";
 import { URL_HOST } from "../utils/urlHost";
 import { getHikeCoords } from "../screens/AddHikeScreen";
+import { SvgUri } from "react-native-svg";
+import EditIcon from "../assets/editIcon.svg";
+
 export default function EditHikeDetailsModal({ data, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState(data.name);
@@ -51,9 +54,9 @@ export default function EditHikeDetailsModal({ data, refetch }) {
     <View>
       <TouchableOpacity
         onPress={() => setIsModalVisible(true)}
-        className="flex justify-center p-4 bg-orange-100 rounded-lg"
+        className="flex justify-center p-3 bg-orange-100 rounded-full"
       >
-        <Text className="text-blue-950 font-bold text-xl">Edit Details</Text>
+        <EditIcon width={35} height={35} />
       </TouchableOpacity>
       <Modal animationType="slide" transparent={true} visible={isModalVisible}>
         <TouchableWithoutFeedback onPress={() => setIsModalVisible(false)}>

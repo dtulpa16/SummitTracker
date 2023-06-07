@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import { URL_HOST } from "../utils/urlHost";
+import AddNoteIcon from "../assets/addNoteIcon.svg";
 export default function AddHikeNotes({ hikeId, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [text, setText] = useState("");
@@ -35,9 +36,9 @@ export default function AddHikeNotes({ hikeId, refetch }) {
     <View>
       <TouchableOpacity
         onPress={() => setIsModalVisible(true)}
-        className="flex justify-center p-4 bg-orange-100 rounded-lg"
+        className="flex justify-center p-3 bg-orange-100 rounded-full"
       >
-        <Text className="text-blue-950 font-bold text-xl">Add a Note</Text>
+        <AddNoteIcon height={35} width={35} />
       </TouchableOpacity>
       <Modal animationType="slide" transparent={true} visible={isModalVisible}>
         <TouchableWithoutFeedback onPress={() => setIsModalVisible(false)}>
