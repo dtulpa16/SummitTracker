@@ -53,7 +53,6 @@ interface HikeMapperProps {
 }
 
 const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
-
   const [theme] = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -67,9 +66,9 @@ const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
           onClick={() => setIsOpen(true)}
           className={`${
             theme === "dark" ? "bg-gray-800" : "bg-blue-500"
-          } mt-4 md:max-w-6xl md:mx-auto p-3 text-white px-5 hover:scale-105 hover:cursor-pointer duration-100 font-semibold rounded`}
+          } mt-4 md:max-w-6xl mx-auto p-3 text-white px-5 hover:scale-105 hover:cursor-pointer duration-100 font-semibold rounded`}
         >
-          Add Hike
+          Add Hike <span className="text-xl font-bold">+</span>
         </h1>
         {hikes.length ? (
           hikes.map((hike, index) => (
