@@ -118,9 +118,9 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
     <div
       className={`${
         theme === "dark" ? "bg-gray-800" : "bg-blue-500"
-      } flex flex-row justify-between md:max-w-6xl md:mx-auto rounded shadow-md p-3 md:min-h-max min-h-[310px]`}
+      } flex flex-row  md:items-start justify-between md:max-w-6xl md:mx-auto rounded shadow-md p-3 md:min-h-max min-h-[300px]`}
     >
-      <div className="flex flex-col gap-1 text-white">
+      <div className="flex flex-col gap-1 text-white ">
         <div className="flex md:flex-row flex-col-reverse flex-wrap gap-2 justify-between md:w-[220px]">
           <h2 className="font-bold text-xl">{hike.name}</h2>
           <HikeOptionsMenu theme={theme} hike={hike} />
