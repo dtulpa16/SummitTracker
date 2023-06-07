@@ -47,9 +47,9 @@ export default function ImageUpload({ hikeId, refetch }) {
       {/* Button to open the image picker */}
       <TouchableOpacity
         onPress={pickImage}
-        className="flex justify-center p-4 bg-orange-400 rounded-lg"
+        className="flex justify-center p-4 bg-orange-100 rounded-lg"
       >
-        <Text className=" text-white text-xl">Upload Images</Text>
+        <Text className=" text-blue-950 font-bold text-xl">Upload Images</Text>
       </TouchableOpacity>
       {/* If there are selected images, show the modal */}
       {selectedImages.length > 0 && (

@@ -46,15 +46,15 @@ export default function HikeDetailsScreen({ route, navigation }) {
       }}
       className=" bg-blue-950 pl-4 pt-4 gap-2"
     >
-      <Text className="text-4xl font-bold text-white">{data?.name}</Text>
-      <Text className="text-xl font-bold text-white">{formatDate()}</Text>
-      <Text className="text-lg font-bold text-white">
+      <Text className="text-4xl font-bold text-orange-50">{data?.name}</Text>
+      <Text className="text-xl font-bold text-orange-50">{formatDate()}</Text>
+      <Text className="text-lg font-bold text-orange-50">
         Length: {data?.length} miles
       </Text>
-      <Text className="text-lg font-bold text-white">
+      <Text className="text-lg font-bold text-orange-50">
         Altitude: {data?.altitude} ft
       </Text>
-      <Text className="text-lg font-bold text-white">Notes</Text>
+      <Text className="text-lg font-bold text-orange-50">Notes</Text>
 
       {/* Display hike notes */}
       <View>
@@ -74,9 +74,11 @@ export default function HikeDetailsScreen({ route, navigation }) {
         <View>
           <TouchableOpacity
             onPress={() => console.log("Delete Pressed!")}
-            className="flex justify-center p-3 bg-orange-400 rounded-lg"
+            className="flex justify-center p-4 bg-orange-100 rounded-lg"
           >
-            <Text className=" text-white text-lg">Delete Hike</Text>
+            <Text className=" text-blue-950 text-xl font-bold">
+              Delete Hike
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
