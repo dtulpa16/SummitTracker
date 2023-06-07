@@ -3,11 +3,12 @@ import { Button } from "../interfaces/Button";
 import { DotsVerticalIcon } from "@heroicons/react/solid";
 import ImagePreviewModal from "./ImagePreviewModal";
 import { Hike } from "../interfaces/Hike";
+import NewNoteModal from "./NewNoteModal";
 
 const options: Button[] = [
   {
     label: "Add Note",
-    onClick: () => console.log("Button 1 clicked"),
+    onClick: () => {},
   },
   {
     label: "Add Image",
@@ -22,22 +23,28 @@ const options: Button[] = [
 type ThemeProps = {
   theme: "light" | "dark";
 };
-interface HikeProps{
-  hike: Hike
+interface HikeProps {
+  hike: Hike;
 }
 const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
   const [showOptions, setShowOptions] = useState<Boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [showNoteModal, setShowNoteModal] = useState<boolean>(false);
   const [image, setImage] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
-  options[1].onClick = () => {fileInputRef.current?.click();} // Overwrite the onClick of the "Add Image" button
+  const newNoteRef = useRef<HTMLInputElement>(null);
+
+  options[1].onClick = () => {
+    fileInputRef.current?.click();
+  }; // Overwrite the onClick of the "Add Image" button
+  options[0].onClick = () => {
+    setShowNoteModal(true);
+  }; // Overwrite the onClick of the "Add Note" button
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
     const file = event.target.files ? event.target.files[0] : null;
     if (file) {
-      setImage(file)
+      setImage(file);
       setShowModal(true);
     }
   };
@@ -82,6 +89,12 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
           hike={hike}
         />
       )}
+      <NewNoteModal
+        isOpen={showNoteModal}
+        theme={theme}
+        setIsOpen={setShowNoteModal}
+        hike={hike}
+      />
     </div>
   );
 };
