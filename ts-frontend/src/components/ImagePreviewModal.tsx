@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Hike } from "../interfaces/Hike";
 import axios from "axios";
 import { HikeFetchContext } from "./HikeList";
+import { notify } from "../helpers/notify";
 type ImageProps = {
   image: File;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,9 +37,11 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
           },
         }
       );
+      notify('📷Image posted successfully!', 'success', theme);
       fetchHikes && fetchHikes()
       console.log(response.data);
     } catch (er) {
+      notify('😞An error occurred in posting image', 'error', theme);
       console.log("Error in posting hike image: ", er);
     }
     setShowModal(false);

@@ -2,20 +2,21 @@ import React, { useContext, useState } from "react";
 import { HikeFetchContext } from "./HikeList";
 import axios from "axios";
 import { Hike } from "../interfaces/Hike";
+import { notify } from "../helpers/notify";
 type ThemeProps = {
   theme: "light" | "dark";
 };
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  hike: Hike
+  hike: Hike;
 }
 
 const NewNoteModal: React.FC<ThemeProps & ModalProps> = ({
   theme,
   isOpen,
   setIsOpen,
-  hike
+  hike,
 }) => {
   const fetchHikes = useContext(HikeFetchContext);
   const [text, settext] = useState<string>("");
@@ -24,11 +25,18 @@ const NewNoteModal: React.FC<ThemeProps & ModalProps> = ({
     e.preventDefault();
     try {
       debugger;
-      let response = await axios.post(`http://localhost:5000/api/summit/${hike._id}/note`, {
-        text: text,
-      });
+      let response = await axios.post(
+        `http://localhost:5000/api/summit/${hike._id}/note`,
+        {
+          text: text,
+        }
+      );
+      notify("✍️Note posted successfully!", "success", theme);
+
       fetchHikes && fetchHikes();
     } catch (error) {
+      notify("😞An error occurred in posting new note", "error", theme);
+
       console.log("Error in postHike: ", error);
     }
 

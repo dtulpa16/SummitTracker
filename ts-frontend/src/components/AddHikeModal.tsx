@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { HikeFetchContext } from "./HikeList";
 import axios from "axios";
+import { notify } from "../helpers/notify";
 type ThemeProps = {
   theme: "light" | "dark";
 };
@@ -32,7 +33,6 @@ const AddHikeModal: React.FC<ThemeProps & ModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      debugger;
       let payload = {
         name: fields.name,
         altitude: Number(fields.altitude),
@@ -42,8 +42,12 @@ const AddHikeModal: React.FC<ThemeProps & ModalProps> = ({
         `http://localhost:5000/api/summit/`,
         payload
       );
+      notify('⛰️Hike posted successfully!', 'success', theme);
       fetchHikes && fetchHikes();
+
     } catch (error) {
+      notify('😞An error occurred in posting new hike', 'error', theme);
+
       console.log("Error in postHike: ", error);
     }
     console.log(fields);

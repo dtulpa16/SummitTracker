@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { HikeFetchContext } from "./HikeList";
 import axios from "axios";
 import { Hike } from "../interfaces/Hike";
+import { notify } from "../helpers/notify";
 type ThemeProps = {
   theme: "light" | "dark";
 };
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  hike: Hike
+  hike: Hike;
 }
 interface FormFields {
   name: string;
@@ -19,7 +20,7 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
   theme,
   isOpen,
   setIsOpen,
-  hike
+  hike,
 }) => {
   const fetchHikes = useContext(HikeFetchContext);
   const [fields, setFields] = React.useState<FormFields>({
@@ -41,12 +42,11 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
         altitude: Number(fields.altitude),
         length: Number(fields.length),
       };
-      await axios.put(
-        `http://localhost:5000/api/summit/${hike._id}`,
-        payload
-      );
+      await axios.put(`http://localhost:5000/api/summit/${hike._id}`, payload);
+      notify("⛰️Hike successfully updated!", "success", theme);
       fetchHikes && fetchHikes();
     } catch (error) {
+      notify("😞An error occurred in updating new hike", "error", theme);
       console.log("Error in postHike: ", error);
     }
     console.log(fields);
@@ -129,4 +129,4 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
     </div>
   ) : null;
 };
-export default EditHikeModal
+export default EditHikeModal;

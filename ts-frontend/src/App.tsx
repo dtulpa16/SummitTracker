@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import { ThemeProvider } from "./context/ThemeContext";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import { RouteObject } from "./interfaces/Route";
 import Navbar from "./components/Navbar";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function App() {
   const [routes] = useState<RouteObject[]>([
