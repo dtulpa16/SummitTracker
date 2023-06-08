@@ -23,21 +23,23 @@ const NewNoteModal: React.FC<ThemeProps & ModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      debugger;
-      let response = await axios.post(
-        `http://localhost:5000/api/summit/${hike._id}/note`,
-        {
-          text: text,
-        }
-      );
-      notify("✍️Note posted successfully!", "success", theme);
-
-      fetchHikes && fetchHikes();
-    } catch (error) {
-      notify("😞An error occurred in posting new note", "error", theme);
-
-      console.log("Error in postHike: ", error);
+    const enteredPassword = prompt("Please enter password:");
+    if (enteredPassword !== process.env.REACT_APP_PERMISSION_PASSWORD) {
+      notify("😞Incorrect password", "error", theme);
+    } else {
+      try {
+        let response = await axios.post(
+          `http://localhost:5000/api/summit/${hike._id}/note`,
+          {
+            text: text,
+          }
+        );
+        notify("✍️Note posted successfully!", "success", theme);
+        fetchHikes && fetchHikes();
+      } catch (error) {
+        notify("😞An error occurred in posting new note", "error", theme);
+        console.log("Error in postHike: ", error);
+      }
     }
 
     setIsOpen(false);

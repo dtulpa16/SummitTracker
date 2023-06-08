@@ -68,10 +68,9 @@ router.delete("/:id", async (req, res) => {
   let result = await deleteHikeById(req.params.id);
   console.log(result);
   return res.status(204).send(result);
-});
+}); 
 
-
-router.get("/altitude", async (req, res) => {
+router.get("/total/altitude", async (req, res) => {
   try {
     let response = await getTotalAltitude();
     console.log(response);
@@ -80,4 +79,6 @@ router.get("/altitude", async (req, res) => {
     return res.status(500).send(er);
   }
 });
+ 
+
 module.exports = router;

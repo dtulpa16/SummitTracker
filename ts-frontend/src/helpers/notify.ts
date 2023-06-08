@@ -17,7 +17,7 @@ export const notify = (
       theme: theme,
     });
   } else {
-    toast.error("An error occurred", {
+    toast.error(message, {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: false,

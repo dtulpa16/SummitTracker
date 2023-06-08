@@ -35,21 +35,24 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      debugger;
-      let payload = {
-        name: fields.name,
-        altitude: Number(fields.altitude),
-        length: Number(fields.length),
-      };
-      await axios.put(`http://localhost:5000/api/summit/${hike._id}`, payload);
-      notify("⛰️Hike successfully updated!", "success", theme);
-      fetchHikes && fetchHikes();
-    } catch (error) {
-      notify("😞An error occurred in updating new hike", "error", theme);
-      console.log("Error in postHike: ", error);
+    const enteredPassword = prompt("Please enter password:");
+    if (enteredPassword !== process.env.REACT_APP_PERMISSION_PASSWORD) {
+      notify("😞Incorrect password", "error", theme);
+    }else{
+      try {
+        let payload = {
+          name: fields.name,
+          altitude: Number(fields.altitude),
+          length: Number(fields.length),
+        };
+        await axios.put(`http://localhost:5000/api/summit/${hike._id}`, payload);
+        notify("⛰️Hike successfully updated!", "success", theme);
+        fetchHikes && fetchHikes();
+      } catch (error) {
+        notify("😞An error occurred in updating new hike", "error", theme);
+        console.log("Error in postHike: ", error);
+      }
     }
-    console.log(fields);
     setIsOpen(false);
   };
 

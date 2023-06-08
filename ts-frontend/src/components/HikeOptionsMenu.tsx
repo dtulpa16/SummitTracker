@@ -34,7 +34,6 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
   const [image, setImage] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const newNoteRef = useRef<HTMLInputElement>(null);
 
   options[1].onClick = () => {
     fileInputRef.current?.click();

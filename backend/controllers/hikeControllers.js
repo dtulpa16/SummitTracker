@@ -36,8 +36,19 @@ async function addNote(id, data) {
 }
 
 async function getTotalAltitude() {
-  let response = await Hike.find({});
-  return response;
+  const hikes = await Hike.find({});
+  let totalAltitude = 0;
+  let totalLength = 0;
+
+  hikes.forEach(hike => {
+    totalAltitude += hike.altitude;
+    totalLength += hike.length;
+  });
+
+  return {
+    altitude: totalAltitude,
+    length: totalLength
+  };
 }
 
 async function fetchNotes(req) {
