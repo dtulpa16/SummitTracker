@@ -45,7 +45,7 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
           altitude: Number(fields.altitude),
           length: Number(fields.length),
         };
-        await axios.put(`http://localhost:5000/api/summit/${hike._id}`, payload);
+        await axios.put(`${process.env.REACT_APP_URL_HOST}/api/summit/${hike._id}`, payload);
         notify("⛰️Hike successfully updated!", "success", theme);
         fetchHikes && fetchHikes();
       } catch (error) {

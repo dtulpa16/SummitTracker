@@ -43,7 +43,7 @@ const AddHikeModal: React.FC<ThemeProps & ModalProps> = ({
           length: Number(fields.length),
         };
         let response = await axios.post(
-          `http://localhost:5000/api/summit/`,
+          `${process.env.REACT_APP_URL_HOST}/api/summit/`,
           payload
         );
         notify("⛰️Hike posted successfully!", "success", theme);

@@ -33,7 +33,7 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
         let formData: FormData = new FormData();
         formData.append("imageUrl", image);
         let response = await axios.post<Hike>(
-          `http://localhost:5000/api/image/${hike._id}/upload`,
+          `${process.env.REACT_APP_URL_HOST}/api/image/${hike._id}/upload`,
           formData,
           {
             headers: {

@@ -97,7 +97,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
     const fetchImage = async () => {
       try {
         let response = await axios.get<Image[]>(
-          `http://localhost:5000/api/image/${hike._id}/`
+          `${process.env.REACT_APP_URL_HOST}/api/image/${hike._id}/`
         );
         setimage(response.data);
       } catch (er) {
