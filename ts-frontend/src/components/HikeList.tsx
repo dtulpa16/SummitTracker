@@ -110,7 +110,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setImageIndex((prevImageIndex) => (prevImageIndex + 1) % image.length);
-    }, 4000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [image]);
 
