@@ -62,8 +62,10 @@ export default function EditHikeDetailsModal({ data, refetch }) {
         <TouchableWithoutFeedback onPress={() => setIsModalVisible(false)}>
           <View className=" absolute  h-full w-full m-auto bg-[#00000080]" />
         </TouchableWithoutFeedback>
-        <View className="flex p-6 gap-4 bg-slate-100 rounded-lg items-center justify-center m-auto">
-          <Text className=" text-2xl text-blue-950">Edit Hike Details</Text>
+        <View className="flex p-6 gap-4 bg-orange-100 rounded-lg items-center justify-center m-auto">
+          <Text className=" text-3xl text-blue-950 font-bold">
+            Edit Hike Details
+          </Text>
           <TextInput
             value={name}
             onChangeText={(value) => setName(value)}
@@ -87,16 +89,16 @@ export default function EditHikeDetailsModal({ data, refetch }) {
             keyboardType={keyboardType}
             className="bg-white p-4 rounded-md text-blue-950 min-w-[200] max-w-[200]"
           />
-          <View className="flex flex-row gap-3">
+          <View className="flex flex-row gap-2">
             <TouchableOpacity
               onPress={() => setIsModalVisible(false)}
-              className="flex justify-center p-4 bg-orange-100 rounded-lg"
+              className="flex justify-center p-3 bg-orange-100 rounded-lg border-2 border-blue-950"
             >
               <Text className="text-lg text-blue-950 font-bold">Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => handleSubmit()}
-              className="flex justify-center p-4 bg-orange-100 rounded-lg"
+              className="flex justify-center p-3 bg-orange-100 rounded-lg border-2 border-blue-950 "
             >
               <Text className="text-blue-950 text-lg font-bold">Submit</Text>
             </TouchableOpacity>

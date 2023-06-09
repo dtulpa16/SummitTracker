@@ -10,7 +10,7 @@ const PastHikesScreen = ({ navigation }) => {
         {data.length > 0 ? (
           data.map((hike, index) => (
             <TouchableOpacity
-              className="flex border p-4 rounded-lg drop-shadow-md border-amber-50 min-h-[150] min-w-[200]"
+              className="flex p-4 rounded-lg drop-shadow-md bg-orange-200 min-h-[150] min-w-[200]"
               key={index}
               onPress={() =>
                 navigation.navigate("Hike Details", {
@@ -19,11 +19,13 @@ const PastHikesScreen = ({ navigation }) => {
                 })
               }
             >
-              <Text className=" text-3xl text-orange-50">{hike?.name}</Text>
-              <Text className=" text-xl text-orange-50">
+              <Text className=" text-3xl text-blue-950 font-bold">
+                {hike?.name}
+              </Text>
+              <Text className=" text-xl font-bold text-blue-950">
                 {hike?.altitude} ft. elevation
               </Text>
-              <Text className=" text-xl text-orange-50">
+              <Text className=" text-xl font-bold text-blue-950">
                 {hike?.length} miles
               </Text>
             </TouchableOpacity>

@@ -44,12 +44,12 @@ export default function AddHikeNotes({ hikeId, refetch }) {
         <TouchableWithoutFeedback onPress={() => setIsModalVisible(false)}>
           <View className=" absolute  h-full w-full m-auto bg-[#00000080]" />
         </TouchableWithoutFeedback>
-        <View className="flex p-6 gap-4 bg-slate-100 rounded-lg items-center justify-center m-auto">
-          <Text className=" text-2xl text-blue-950">Add a Note</Text>
+        <View className="flex p-6 gap-4 bg-orange-100 rounded-lg items-center justify-center m-auto">
+          <Text className=" text-3xl text-blue-950 font-bold">Add a Note</Text>
           <TextInput
             value={text}
             onChangeText={(value) => setText(value)}
-            placeholderTextColor="black"
+            placeholderTextColor="#60605e"
             placeholder="I thought this hike was..."
             className="bg-white p-4 rounded-md text-blue-950 min-w-[200] min-h-[80px] max-w-[200]"
             multiline
@@ -58,13 +58,13 @@ export default function AddHikeNotes({ hikeId, refetch }) {
           <View className="flex flex-row gap-3">
             <TouchableOpacity
               onPress={() => setIsModalVisible(false)}
-              className="flex justify-center p-4 bg-orange-100 rounded-lg"
+              className="flex justify-center p-4 bg-orange-100 rounded-lg border-2 border-blue-950"
             >
               <Text className="text-blue-950 text-xl font-bold">Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => handleSubmit()}
-              className="flex justify-center p-4 bg-orange-100 rounded-lg"
+              className="flex justify-center p-4 bg-orange-100 rounded-lg border-2 border-blue-950"
             >
               <Text className="text-blue-950 text-xl font-bold">Submit</Text>
             </TouchableOpacity>
