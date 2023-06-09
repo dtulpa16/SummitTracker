@@ -37,12 +37,15 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
 
   options[1].onClick = () => {
     fileInputRef.current?.click();
+    setShowOptions(false)
   }; // Overwrite the onClick of the "Add Image" button
   options[0].onClick = () => {
     setShowNoteModal(true);
+    setShowOptions(false)
   }; // Overwrite the onClick of the "Add Note" button
   options[2].onClick = () => {
     setShowEditModal(true);
+    setShowOptions(false)
   }; // Overwrite the onClick of the "Edit Hike" button
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,12 +101,13 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
         theme={theme}
         setIsOpen={setShowNoteModal}
         hike={hike}
-      />
+        />
       <EditHikeModal
         isOpen={showEditModal}
         theme={theme}
         setIsOpen={setShowEditModal}
         hike={hike}
+
       />
     </div>
   );

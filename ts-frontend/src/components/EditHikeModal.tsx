@@ -9,6 +9,7 @@ type ThemeProps = {
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+
   hike: Hike;
 }
 interface FormFields {
@@ -53,6 +54,7 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
         console.log("Error in postHike: ", error);
       }
     }
+
     setIsOpen(false);
   };
 
