@@ -29,7 +29,7 @@ const NewNoteModal: React.FC<ThemeProps & ModalProps> = ({
     } else {
       try {
         let response = await axios.post(
-          `http://localhost:5000/api/summit/${hike._id}/note`,
+          `${process.env.REACT_APP_URL_HOST}/api/summit/${hike._id}/note`,
           {
             text: text,
           }
