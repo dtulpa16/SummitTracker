@@ -18,32 +18,37 @@ export default function HomePage() {
     fetchTotals();
   }, []);
   return (
-    <div className={`flex h-full flex-col ${
-      theme === "dark" ? "bg-gray-600" : "bg-white"
-    }`}>
+    <div
+      className={`flex h-full flex-col ${
+        theme === "dark" ? "bg-gray-600" : "bg-white"
+      }`}
+    >
       {stats && (
-        <div className="flex flex-row mt-4 md:max-w-6xl gap-4 md:w-1/2 md:m-auto p-3">
-          <Line
-            className={`${
-              theme === "dark" ? "bg-gray-600" : "bg-white"
-            }`}
-            strokeLinecap="square"
-            percent={Math.floor((stats.altitude / 50000) * 100)}
-            strokeWidth={4}
-            trailColor="black"
-            strokeColor="#D3D3D3"
-          />
+        <div className={`flex flex-row mt-4 md:max-w-6xl gap-4 md:w-1/2 md:m-auto p-3 text-white font-semibold`}>
+          <div className={`flex flex-col w-[50%] gap-1 ${theme === "dark" ? "bg-gray-500" : "bg-blue-400"} md:p-3 p-2 rounded-lg`}>
+            <h1 className="md:text-lg -mb-1">Total Altitude</h1>
+            <h1 className="text-md">{stats.altitude} / 50,000 feet</h1>
+            <Line
+              // className={`${theme === "dark" ? "bg-gray-600" : "bg-white"}`}
+              strokeLinecap="square"
+              percent={Math.floor((stats.altitude / 50000) * 100)}
+              strokeWidth={5}
+              trailColor="white"
+              strokeColor={`${theme === "dark" ? "#1f2937" : "#3b62f6"}`}
+            />
+          </div>
+          <div className={`flex flex-col w-[50%] gap-1 ${theme === "dark" ? "bg-gray-500" : "bg-blue-400"} md:p-3 p-2 rounded-lg`}>
+            <h1 className="md:text-lg -mb-1">Total Length</h1>
+            <h1 className="text-md">{stats.length} / 100 miles</h1>
 
-          <Line
-            className={`${
-              theme === "dark" ? "bg-gray-600" : "bg-white"
-            }`}
-            strokeLinecap
-            percent={Math.floor((stats.length / 100) * 100)}
-            strokeWidth={4}
-            trailColor="black"
-            strokeColor="#D3D3D3"
-          />
+            <Line
+              strokeLinecap="square"
+              percent={Math.floor((stats.length / 100) * 100)}
+              strokeWidth={5}
+              trailColor="white"
+              strokeColor={`${theme === "dark" ? "#1f2937" : "#3b62f6"}`}
+            />
+          </div>
         </div>
       )}
       <HikeList />
