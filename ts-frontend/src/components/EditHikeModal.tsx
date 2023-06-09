@@ -58,16 +58,16 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
 
   return isOpen ? (
     <div
-      className={`${
-        theme === "dark" ? "md:bg-gray-600 bg-gray-900 text-white" : "bg-white"
-      } fixed inset-0 flex items-center justify-center z-40 bg-opacity-80 md:bg-opacity-60`}
+    className={`${
+      theme === "dark" ? "md:bg-gray-600 bg-gray-900 text-white" : "bg-blue-300"
+    } fixed inset-0 flex items-center justify-center z-40 bg-opacity-80 md:bg-opacity-60`}
     >
       <div
         className={`${
-          theme === "dark" ? "bg-gray-600 text-white" : "bg-white"
+          theme === "dark" ? "bg-gray-600 text-white" : "bg-white text-black"
         } p-8 md:p-12 rounded shadow-md z-50 md:w-auto w-11/12`}
       >
-        <h1 className="font-semibold text-xl mb-2">Add New Hike</h1>
+        <h1 className="font-semibold text-xl mb-2">Edit Hike</h1>
         <form onSubmit={handleSubmit} className="flex flex-col">
           <label>Name</label>
           <input
