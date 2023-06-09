@@ -47,8 +47,12 @@ export default function HikeDetailsScreen({ route, navigation }) {
       }}
       className=" bg-blue-950 pl-4 pt-4 gap-2"
     >
-      <Text className="text-4xl font-bold text-orange-50">{data?.name}</Text>
-      <Text className="text-xl font-bold text-orange-50">{formatDate()}</Text>
+      <Text className="text-4xl font-bold text-orange-50 self-center">
+        {data?.name}
+      </Text>
+      <Text className="text-xl  text-orange-50 self-center">
+        {formatDate()}
+      </Text>
       <Text className="text-lg font-bold text-orange-50">
         Length: {data?.length} miles
       </Text>

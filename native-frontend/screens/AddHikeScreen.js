@@ -47,7 +47,7 @@ export default function AddHikeScreen({ navigation }) {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View className="flex-1 items-center justify-center bg-blue-950 gap-5">
-          <Text className=" text-white text-5xl">Add a New Hike</Text>
+          <Text className=" text-orange-50 text-5xl">Add a New Hike</Text>
           <View className="gap-3 w-3/5">
             <TextInput
               value={name}
@@ -55,7 +55,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Hike Name"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md text-blue-950"
+              className="bg-orange-50 p-4 rounded-md text-blue-950"
             />
             <TextInput
               value={altitude}
@@ -63,7 +63,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Altitude"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md text-blue-950"
+              className="bg-orange-50 p-4 rounded-md text-blue-950"
             />
             <TextInput
               value={length}
@@ -71,19 +71,19 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Length (miles)"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-white p-4 rounded-md text-blue-950"
+              className="bg-orange-50 p-4 rounded-md text-blue-950"
             />
           </View>
-          <View className="flex flex-row gap-10 justify-center">
+          <View className="flex flex-row ">
             <TouchableOpacity
               onPress={handleSubmit}
-              className="flex justify-center p-4 bg-orange-100 rounded-lg"
+              className="p-4 bg-orange-100 rounded-lg"
             >
               <Text className="text-blue-950 text-xl font-bold">Submit</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.goBack()}
-              className="flex justify-center p-4 bg-orange-100 rounded-lg"
+              className="p-4 bg-orange-100 rounded-lg"
             >
               <Text className="text-blue-950 text-xl font-bold">Cancel</Text>
             </TouchableOpacity>
