@@ -57,22 +57,22 @@ const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
+      <h1
+        onClick={() => setIsOpen(true)}
+        className={`${
+          theme === "dark" ? "bg-gray-800" : "bg-blue-500"
+        } mt-4 md:max-w-6xl mx-auto p-3 text-white px-5 hover:scale-105 hover:cursor-pointer duration-100 font-semibold rounded w-[140px] text-center`}
+      >
+        Add Hike <span className="text-xl font-bold">+</span>
+      </h1>
       <div
-        className={`flex h-full flex-col ${
+        className={`flex flex-row flex-wrap md:w-10/12 mx-auto md justify-center ${
           theme === "dark" ? "bg-gray-600" : "bg-white"
         }`}
       >
-        <h1
-          onClick={() => setIsOpen(true)}
-          className={`${
-            theme === "dark" ? "bg-gray-800" : "bg-blue-500"
-          } mt-4 md:max-w-6xl mx-auto p-3 text-white px-5 hover:scale-105 hover:cursor-pointer duration-100 font-semibold rounded`}
-        >
-          Add Hike <span className="text-xl font-bold">+</span>
-        </h1>
         {hikes.length ? (
           hikes.map((hike, index) => (
-            <div key={index} className={` text-white p-4`}>
+            <div key={index} className={` text-white md:p-4 py-3`}>
               <HikeCard hike={hike} />
             </div>
           ))
@@ -118,7 +118,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
     <div
       className={`${
         theme === "dark" ? "bg-gray-800" : "bg-blue-500"
-      } flex flex-row  md:items-start justify-between md:max-w-6xl md:mx-auto rounded shadow-md p-3 md:min-h-max min-h-[300px]`}
+      } flex flex-row  md:items-start justify-between md:max-w-6xl min-w-[380px] md:min-w-[530px] md:mx-auto rounded shadow-md p-3 md:min-h-max min-h-[260px]`}
     >
       <div className="flex flex-col gap-1 text-white ">
         <div className="flex md:flex-row flex-col-reverse flex-wrap gap-2 justify-between md:w-[220px]">
@@ -157,7 +157,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
                 image[imageIndex]?.imageUrl || null
               }`}
               alt={hike.name}
-              className="object-cover h-[100%] w-[100%] absolute"
+              className="object-cover h-[100%] w-[100%] absolute "
             />
           </CSSTransition>
         </TransitionGroup>
