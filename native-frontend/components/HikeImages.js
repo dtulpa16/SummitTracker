@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Image, FlatList, ScrollView } from "react-native";
 import useFetch from "../hooks/useFetch";
 import { URL_HOST } from "../utils/urlHost";
+import LoadingIcon from "../assets/loading.svg";
 export default function HikeImages({ hikeId }) {
   const { data, isLoading, error } = useFetch(
     `${URL_HOST}/api/image/${hikeId}`
   );
 
   return !isLoading ? (
-    <View className="flex flex-row -ml-3 flex-wrap">
+    <View className="flex flex-row flex-wrap gap-2">
       {data.map((image, i) => (
         <View key={i}>
           <ImageCard key={image.id} image={image} />
@@ -16,7 +17,9 @@ export default function HikeImages({ hikeId }) {
       ))}
     </View>
   ) : (
-    <Text>Loading...</Text>
+    <View className="flex h-full w-full justify-center items-center">
+      <LoadingIcon width={100} height={100} className="animate-spin" />
+    </View>
   );
 }
 

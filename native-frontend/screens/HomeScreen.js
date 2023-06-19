@@ -1,6 +1,24 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, View, Image, Button, TouchableOpacity } from "react-native";
+import { useState, useEffect } from "react";
+import axios from "axios";
 export default function HomeScreen({ navigation }) {
+  const [totalStats, setTotalStats] = useState(null);
+
+  useEffect(() => {
+    const getTotalStats = async () => {
+      try {
+        let response = await axios.get(
+          "http://100.64.58.37:5000/api/summit/total/altitude"
+        );
+        setTotalStats(response.data);
+      } catch (error) {
+        console.log("Error in getTotalStats: ", error);
+      }
+    };
+    getTotalStats();
+  }, []);
+
   return (
     <View className="flex-1 items-center bg-blue-950 justify-around">
       <View className="flex items-center gap-5">
