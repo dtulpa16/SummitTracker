@@ -65,7 +65,7 @@ export default function HikeDetailsScreen({ route, navigation }) {
       <View>
         <HikeNotes notes={data.notes} />
       </View>
-      <Text className="text-lg font-bold text-orange-50">Photos:</Text>
+      <Text className="text-2xl font-bold text-orange-50 pb-2">Photos:</Text>
 
       {/* Display hike images */}
       <HikeImages hikeId={data._id} />
