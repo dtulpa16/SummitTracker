@@ -36,40 +36,34 @@ export default function HikeDetailsScreen({ route, navigation }) {
     return formattedDate;
   };
 
-  // If data is still loading, display a loading message
-  if (isLoading) return <Text>Loading...</Text>;
-
   // If data has loaded, display hike details
-  return data ? (
-    <ScrollView
-      contentContainerStyle={{
-        alignItems: "flex-start",
-      }}
-      className=" bg-blue-950 pl-4 pt-4 gap-2"
-    >
-      <Text className="text-4xl font-bold text-orange-50 self-center">
-        {data?.name}
-      </Text>
-      <Text className="text-xl  text-orange-50 self-center">
-        {formatDate()}
-      </Text>
-      <Text className="text-lg font-bold text-orange-50">
-        Length: {data?.length} miles
-      </Text>
-      <Text className="text-lg font-bold text-orange-50">
-        Altitude: {data?.altitude} ft
-      </Text>
-      <Text className="text-lg font-bold text-orange-50">Notes:</Text>
+  return data && !isLoading ? (
+    <View className="flex-1 bg-blue-950 pb-12">
+      <ScrollView className=" pl-4 pt-4 gap-2">
+        <Text className="text-4xl font-bold text-orange-50 self-center">
+          {data?.name}
+        </Text>
+        <Text className="text-xl  text-orange-50 self-center">
+          {formatDate()}
+        </Text>
+        <Text className="text-lg font-bold text-orange-50">
+          Length: {data?.length} miles
+        </Text>
+        <Text className="text-lg font-bold text-orange-50">
+          Altitude: {data?.altitude} ft
+        </Text>
+        <Text className="text-lg font-bold text-orange-50">Notes:</Text>
 
-      {/* Display hike notes */}
-      <View>
-        <HikeNotes notes={data.notes} />
-      </View>
-      <Text className="text-2xl font-bold text-orange-50 pb-2">Photos:</Text>
+        {/* Display hike notes */}
+        <View>
+          <HikeNotes notes={data.notes} />
+        </View>
+        <Text className="text-2xl font-bold text-orange-50 pb-2">Photos:</Text>
 
-      {/* Display hike images */}
-      <HikeImages hikeId={data._id} />
-      {/* Component for uploading new images */}
+        {/* Display hike images */}
+        <HikeImages hikeId={data._id} />
+      </ScrollView>
+      {/* Buttons for adding notes, photos, editing, viewing map, and deleting */}
       <View className="mb-2 flex flex-row gap-4 m-auto justify-center items-center">
         <View>
           <ImageUpload hikeId={data._id} refetch={refetch} />
@@ -96,7 +90,7 @@ export default function HikeDetailsScreen({ route, navigation }) {
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
+    </View>
   ) : (
     <Text>Loading...</Text>
   );

@@ -74,7 +74,7 @@ export default function AddHikeScreen({ navigation }) {
               className="bg-orange-50 p-4 rounded-md text-blue-950"
             />
           </View>
-          <View className="flex flex-row ">
+          <View className="flex flex-row gap-2">
             <TouchableOpacity
               onPress={handleSubmit}
               className="p-4 bg-orange-100 rounded-lg"
