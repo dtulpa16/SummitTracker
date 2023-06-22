@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import { URL_HOST } from "../utils/urlHost";
+import CustomButton from "../components/elements/CustomButton";
 export default function AddHikeScreen({ navigation }) {
   const [name, setName] = useState("");
   const [altitude, setAltitude] = useState("");
@@ -74,19 +75,9 @@ export default function AddHikeScreen({ navigation }) {
               className="bg-orange-50 p-4 rounded-md text-blue-950"
             />
           </View>
-          <View className="flex flex-row gap-2">
-            <TouchableOpacity
-              onPress={handleSubmit}
-              className="p-4 bg-orange-100 rounded-lg"
-            >
-              <Text className="text-blue-950 text-xl font-bold">Submit</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              className="p-4 bg-orange-100 rounded-lg"
-            >
-              <Text className="text-blue-950 text-xl font-bold">Cancel</Text>
-            </TouchableOpacity>
+          <View className="flex flex-row justify-between">
+            <CustomButton onPress={handleSubmit} text="Submit" />
+            <CustomButton onPress={() => navigation.goBack()} text="Cancel" />
           </View>
 
           <StatusBar style="auto" />

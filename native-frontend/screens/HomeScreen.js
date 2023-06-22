@@ -9,6 +9,7 @@ import { AnimatedCircularProgress } from "react-native-circular-progress";
 import ShoeIcon from "../assets/shoeIcon.svg";
 import MountainIcon from "../assets/mountainIcon.svg";
 import { useFocusEffect } from "@react-navigation/native";
+import CustomButton from "../components/elements/CustomButton";
 export default function HomeScreen({ navigation }) {
   const [key, setKey] = useState(0);
   const { data, isLoading, error } = useFetch(
@@ -25,13 +26,13 @@ export default function HomeScreen({ navigation }) {
         <Image source={require("../assets/icon.png")} className=" h-36 w-36" />
         <Text className="text-orange-50 text-5xl">SummitTracker</Text>
       </View>
-      <View className="flex flex-col gap-3">
+      <View className="flex flex-col gap-5 items-center">
         {/* 50,000 feet altitude goal */}
-        <View>
+        <View className="flex flex-col items-center">
           {data?.altitude ? (
             <>
-              <Text className="text-2xl font-bold text-white">
-                {data.altitude} / 50,000 Elevation
+              <Text className="text-2xl font-bold text-white pb-3">
+                {data.altitude} / 50,000 ft. Elevation
               </Text>
               <AnimatedCircularProgress
                 key={key}
@@ -47,10 +48,10 @@ export default function HomeScreen({ navigation }) {
           ) : null}
         </View>
         {/* 100 mile length goal */}
-        <View>
+        <View className="flex flex-col items-center">
           {data?.length ? (
             <>
-              <Text className="text-2xl font-bold text-white p-1">
+              <Text className="text-2xl font-bold text-white pb-3">
                 {data.length} / 100 Miles
               </Text>
               <AnimatedCircularProgress
@@ -67,19 +68,15 @@ export default function HomeScreen({ navigation }) {
           ) : null}
         </View>
       </View>
-      <View className="flex flex-row gap-10 pb-5">
-        <TouchableOpacity
+      <View className="flex flex-row pb-5 justify-around">
+        <CustomButton
           onPress={() => navigation.navigate("Past Hikes")}
-          className="flex justify-center p-4 bg-orange-100 rounded-lg"
-        >
-          <Text className="text-blue-950 text-2xl font-bold">Past Hikes</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+          text="Past Hikes"
+        />
+        <CustomButton
           onPress={() => navigation.navigate("Add Hike")}
-          className="flex justify-center p-4 bg-orange-100 rounded-lg"
-        >
-          <Text className="text-blue-950 text-2xl font-bold">Add a Hike</Text>
-        </TouchableOpacity>
+          text="Add a Hike"
+        />
       </View>
       <StatusBar style="auto" />
     </View>

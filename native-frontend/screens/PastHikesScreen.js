@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { URL_HOST } from "../utils/urlHost";
 import useFetch from "../hooks/useFetch";
+import CustomButton from "../components/elements/CustomButton";
 const PastHikesScreen = ({ navigation }) => {
   const { data, isLoading, error } = useFetch(`${URL_HOST}/api/summit/`);
   return !isLoading && data ? (
@@ -44,13 +45,11 @@ const PastHikesScreen = ({ navigation }) => {
           )}
         </View>
       </ScrollView>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Home")}
-        className="flex justify-center p-4 bg-orange-200 rounded-xl mt-5"
-      >
-        <Text className="text-blue-950 text-xl font-bold">Return Home</Text>
-      </TouchableOpacity>
 
+      <CustomButton
+        onPress={() => navigation.navigate("Home")}
+        text="Return Home"
+      />
       <StatusBar style="auto" />
     </SafeAreaView>
   ) : (

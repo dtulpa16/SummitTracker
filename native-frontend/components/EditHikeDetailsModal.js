@@ -15,6 +15,7 @@ import { URL_HOST } from "../utils/urlHost";
 import { getHikeCoords } from "../screens/AddHikeScreen";
 import { SvgUri } from "react-native-svg";
 import EditIcon from "../assets/editIcon.svg";
+import CustomButton from "./elements/CustomButton";
 
 export default function EditHikeDetailsModal({ data, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -62,7 +63,7 @@ export default function EditHikeDetailsModal({ data, refetch }) {
         <TouchableWithoutFeedback onPress={() => setIsModalVisible(false)}>
           <View className=" absolute  h-full w-full m-auto bg-[#00000080]" />
         </TouchableWithoutFeedback>
-        <View className="flex p-6 gap-4 bg-orange-100 rounded-lg items-center justify-center m-auto">
+        <View className="flex p-6 gap-4 bg-slate-50 rounded-lg items-center justify-center m-auto">
           <Text className=" text-3xl text-blue-950 font-bold">
             Edit Hike Details
           </Text>
@@ -71,7 +72,7 @@ export default function EditHikeDetailsModal({ data, refetch }) {
             onChangeText={(value) => setName(value)}
             placeholder={name}
             placeholderTextColor="#60605e"
-            className="bg-white p-4 rounded-md text-blue-950 min-w-[200] max-w-[200]"
+            className="bg-white p-4 rounded-md text-blue-950 min-w-[200] max-w-[200] border-2 border-blue-950"
           />
           <TextInput
             value={altitude}
@@ -79,7 +80,7 @@ export default function EditHikeDetailsModal({ data, refetch }) {
             placeholder={altitude}
             placeholderTextColor="#60605e"
             keyboardType={keyboardType}
-            className="bg-white p-4 rounded-md text-blue-950 min-w-[200] max-w-[200]"
+            className="bg-white p-4 rounded-md text-blue-950 min-w-[200] max-w-[200] border-2 border-blue-950"
           />
           <TextInput
             value={length}
@@ -87,21 +88,20 @@ export default function EditHikeDetailsModal({ data, refetch }) {
             placeholder={length}
             placeholderTextColor="#60605e"
             keyboardType={keyboardType}
-            className="bg-white p-4 rounded-md text-blue-950 min-w-[200] max-w-[200]"
+            className="bg-white p-4 rounded-md text-blue-950 min-w-[200] max-w-[200] border-2 border-blue-950"
           />
-          <View className="flex flex-row gap-2">
-            <TouchableOpacity
+          <View className="flex flex-row justify-between">
+            <CustomButton
               onPress={() => setIsModalVisible(false)}
-              className="flex justify-center p-3 bg-orange-100 rounded-lg border-2 border-blue-950"
-            >
-              <Text className="text-lg text-blue-950 font-bold">Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => handleSubmit()}
-              className="flex justify-center p-3 bg-orange-100 rounded-lg border-2 border-blue-950 "
-            >
-              <Text className="text-blue-950 text-lg font-bold">Submit</Text>
-            </TouchableOpacity>
+              text="Cancel"
+              customTextStyle="text-blue-950 text-lg font-bold"
+            />
+            <CustomButton
+              onPress={handleSubmit}
+              text="Submit"
+              customTextStyle="text-blue-950 text-lg font-bold"
+              customButtonStyle="flex justify-center p-4 bg-orange-200 rounded-xl border-2 border-blue-950 ml-2"
+            />
           </View>
         </View>
       </Modal>
