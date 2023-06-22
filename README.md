@@ -20,7 +20,17 @@ SummitTracker is a web application that allows you to track your hikes, includin
 
 1. Clone the repository: `git clone https://github.com/dtulpa16/summittracker.git`
 2. Install dependencies for the backend: `cd summittracker-backend && npm install`
-3. Install dependencies for the frontend: `cd ../summittracker-frontend && npm install`
-4. Start the backend server: `npm run start:server`
-5. **One Time** install expo-cli: `npm install -g expo-cli`
-6. Start the frontend development server: `npx expo start`
+3. Start the backend server: `npm run start:server`
+
+## React/TypeScript Frontend
+
+1. Navigate to project folder in new terminal: `cd ts-frontend`
+2. Install package dependencies: `npm install`
+3. Start the frontend development server: `npm start`
+
+## React Native/Expo Frontend
+
+1. Navigate to project folder in new terminal: `cd native-frontend`
+2. **One Time** install expo-cli: `npm install -g expo-cli`
+3. Install package dependencies: `npm install`
+4. Start the frontend development server with Expo: `npx expo start`
