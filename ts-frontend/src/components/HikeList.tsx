@@ -56,7 +56,9 @@ const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
   const [theme] = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div>
+    <div className={`${
+      theme === "dark" ? "bg-gray-600" : "bg-white"
+    }`}>
       <h1
         onClick={() => setIsOpen(true)}
         className={`${
