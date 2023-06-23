@@ -39,7 +39,7 @@ export default function HomePage() {
           </div>
           <div className={`flex flex-col w-[50%] gap-1 ${theme === "dark" ? "bg-gray-500" : "bg-blue-400"} md:p-3 p-2 rounded-lg`}>
             <h1 className="md:text-lg -mb-1">Total Length</h1>
-            <h1 className="text-md">{stats.length} / 100 miles</h1>
+            <h1 className="text-md">{parseFloat(stats.length.toFixed(2))} / 100 miles</h1>
 
             <Line
               strokeLinecap="square"
