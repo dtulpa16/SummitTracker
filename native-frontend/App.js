@@ -7,37 +7,38 @@ import HomeScreen from "./screens/HomeScreen";
 import PastHikesScreen from "./screens/PastHikesScreen";
 import HikeDetailsScreen from "./screens/HikeDetailsScreen";
 import AddHikeScreen from "./screens/AddHikeScreen";
+import NavBar from "./components/NavBar";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: "#172554",
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            color: "white",
-          },
-        }}
-      >
+      <Stack.Navigator>
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          screenOptions={{ headerShown: false }}
+          options={({ navigation }) => ({
+            headerTitle: () => <NavBar navigation={navigation} />,
+          })}
         ></Stack.Screen>
         <Stack.Screen
           name="Past Hikes"
           component={PastHikesScreen}
+          options={({ navigation }) => ({
+            headerTitle: () => <NavBar navigation={navigation} />,
+          })}
         ></Stack.Screen>
         <Stack.Screen
           name="Hike Details"
           component={HikeDetailsScreen}
-          screenOptions={{ headerShown: true }}
-          options={({ route }) => ({ title: route.params.name || "Details" })}
+          options={({ navigation, route }) => ({
+            headerTitle: () => (
+              <NavBar
+                navigation={navigation}
+                title={route.params?.name ?? "Details"}
+              />
+            ),
+          })}
         ></Stack.Screen>
         <Stack.Screen name="Add Hike" component={AddHikeScreen}></Stack.Screen>
       </Stack.Navigator>
