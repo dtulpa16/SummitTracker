@@ -32,7 +32,7 @@ export default function HomeScreen({ navigation }) {
           {data?.altitude ? (
             <>
               <Text className="text-2xl font-bold text-white pb-3">
-                {data.altitude} / 50,000 ft. Elevation
+                {Math.round(data.altitude)} / 50,000 ft. Elevation
               </Text>
               <AnimatedCircularProgress
                 key={key}
@@ -52,7 +52,7 @@ export default function HomeScreen({ navigation }) {
           {data?.length ? (
             <>
               <Text className="text-2xl font-bold text-white pb-3">
-                {data.length} / 100 Miles
+                {Math.round(data.length)} / 100 Miles
               </Text>
               <AnimatedCircularProgress
                 key={key}
