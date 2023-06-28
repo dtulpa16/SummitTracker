@@ -9,7 +9,22 @@ import HikeDetailsScreen from "./screens/HikeDetailsScreen";
 import AddHikeScreen from "./screens/AddHikeScreen";
 import NavBar from "./components/NavBar";
 const Stack = createNativeStackNavigator();
+const NestedStack = createNativeStackNavigator();
 
+function NestedNavigator() {
+  return (
+    <NestedStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <NestedStack.Screen name="Home" component={HomeScreen} />
+      <NestedStack.Screen name="Past Hikes" component={PastHikesScreen} />
+      <NestedStack.Screen name="Hike Details" component={HikeDetailsScreen} />
+      <NestedStack.Screen name="Add Hike" component={AddHikeScreen} />
+    </NestedStack.Navigator>
+  );
+}
 export default function App() {
   return (
     <NavigationContainer>
@@ -20,6 +35,13 @@ export default function App() {
         }}
       >
         <Stack.Screen
+          name="Main"
+          component={NestedNavigator}
+          options={(navigation) => ({
+            headerTitle: () => <NavBar navigation={navigation} />,
+          })}
+        />
+        {/* <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={({ navigation }) => ({
@@ -45,7 +67,7 @@ export default function App() {
             ),
           })}
         ></Stack.Screen>
-        <Stack.Screen name="Add Hike" component={AddHikeScreen}></Stack.Screen>
+        <Stack.Screen name="Add Hike" component={AddHikeScreen}></Stack.Screen> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

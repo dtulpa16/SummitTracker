@@ -1,7 +1,9 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import HomeIcon from "../assets/homeIcon.svg";
+import { useNavigation } from "@react-navigation/native";
 
-const NavBar = ({ navigation }) => {
+const NavBar = () => {
+  const navigation = useNavigation();
   return (
     <View className="flex flex-row justify-around items-center w-full">
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
