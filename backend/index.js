@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(cors());
 connectDb()
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'routes', 'public')));
+// app.use(express.static(path.join(__dirname, 'routes', 'public')));
 app.get('/', async(req, res) => { res.send('Hello from Express!')})
 app.use('/api/summit', summit)
 app.use('/api/image', image)

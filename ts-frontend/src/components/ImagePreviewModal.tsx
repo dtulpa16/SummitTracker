@@ -25,31 +25,31 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
 }) => {
   const fetchHikes = useContext(HikeFetchContext);
   const handleSubmit = async () => {
-    const enteredPassword = prompt("Please enter password:");
+    setShowModal(false);
+    let enteredPassword = prompt("Please enter password:");
     if (enteredPassword !== process.env.REACT_APP_PERMISSION_PASSWORD) {
       notify("😞Incorrect password", "error", theme);
     } else {
-      try {
-        let formData: FormData = new FormData();
-        formData.append("imageUrl", image);
-        let response = await axios.post<Hike>(
-          `${process.env.REACT_APP_URL_HOST}/api/image/${hike._id}/upload`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        notify("📷Image posted successfully!", "success", theme);
-        fetchHikes && fetchHikes();
-        console.log(response.data);
-      } catch (er) {
-        notify("😞An error occurred in posting image", "error", theme);
-        console.log("Error in posting hike image: ", er);
-      }
+    try {
+      let formData: FormData = new FormData();
+      formData.append("imageUrl", image);
+      let response = await axios.post<Hike>(
+        `${process.env.REACT_APP_URL_HOST}/api/image/${hike._id}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      notify("📷Image posted successfully!", "success", theme);
+      fetchHikes && fetchHikes();
+      console.log(response.data);
+    } catch (er) {
+      notify("😞An error occurred in posting image", "error", theme);
+      console.log("Error in posting hike image: ", er);
     }
-    setShowModal(false);
+    }
     setImage(null);
   };
   return showModal && image ? (

@@ -29,7 +29,6 @@ export default function HomePage() {
             <h1 className="md:text-lg -mb-1">Total Altitude</h1>
             <h1 className="text-md">{stats.altitude} / 50,000 feet</h1>
             <Line
-              // className={`${theme === "dark" ? "bg-gray-600" : "bg-white"}`}
               strokeLinecap="square"
               percent={Math.floor((stats.altitude / 50000) * 100)}
               strokeWidth={5}

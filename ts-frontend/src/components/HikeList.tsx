@@ -56,9 +56,7 @@ const HikeMapper: FC<HikeMapperProps> = ({ hikes }) => {
   const [theme] = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className={`${
-      theme === "dark" ? "bg-gray-600" : "bg-white"
-    }`}>
+    <div className={`${theme === "dark" ? "bg-gray-600" : "bg-white"}`}>
       <h1
         onClick={() => setIsOpen(true)}
         className={`${
@@ -149,18 +147,17 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
       </div>
       <div className="h-[250px] md:w-[250px] min-w-[180px] bg-slate-400 relative overflow-hidden">
         <TransitionGroup>
+          {console.log(image[imageIndex]?.imageUrl)}
           <CSSTransition
             key={image[imageIndex]?.imageUrl}
             timeout={500}
             classNames="slide"
           >
             <img
-              src={`${process.env.REACT_APP_URL_HOST}${
-                image[imageIndex]?.imageUrl || null
-              }`}
+              src={image[imageIndex]?.imageUrl}
               alt={hike.name}
               className="object-cover h-[100%] w-[100%] absolute "
-            />
+              />
           </CSSTransition>
         </TransitionGroup>
       </div>
