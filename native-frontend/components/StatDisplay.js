@@ -1,0 +1,60 @@
+import { View, Text } from "react-native";
+import { AnimatedCircularProgress } from "react-native-circular-progress";
+import ShoeIcon from "../assets/shoeIcon.svg";
+import MountainIcon from "../assets/mountainIcon.svg";
+import React, { useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+const StatDisplay = ({ data }) => {
+  const [key, setKey] = useState(0);
+  useFocusEffect(
+    React.useCallback(() => {
+      setKey((prevKey) => prevKey + 1);
+    }, [])
+  );
+  return (
+    <View className="flex flex-col gap-5 items-center">
+      {/* 50,000 feet altitude goal */}
+      <View className="flex flex-col items-center">
+        {data?.altitude ? (
+          <>
+            <Text className="text-2xl font-bold text-white pb-3">
+              {Math.round(data.altitude)} / 50,000 ft. Elevation
+            </Text>
+            <AnimatedCircularProgress
+              key={key}
+              size={150}
+              width={15}
+              rotation={0}
+              fill={Math.floor(data.altitude / 500)}
+              tintColor="#ef5350"
+              backgroundColor="#ffebee"
+              children={() => <MountainIcon width="75%" height="75%" />}
+            />
+          </>
+        ) : null}
+      </View>
+      {/* 100 mile length goal */}
+      <View className="flex flex-col items-center">
+        {data?.length ? (
+          <>
+            <Text className="text-2xl font-bold text-white pb-3">
+              {Math.round(data.length)} / 100 Miles
+            </Text>
+            <AnimatedCircularProgress
+              key={key}
+              size={150}
+              width={15}
+              rotation={0}
+              fill={Math.floor(data.length)}
+              tintColor="#ffa726"
+              backgroundColor="#fff3e0"
+              children={() => <ShoeIcon width="75%" height="75%" />}
+            />
+          </>
+        ) : null}
+      </View>
+    </View>
+  );
+};
+
+export default StatDisplay;
