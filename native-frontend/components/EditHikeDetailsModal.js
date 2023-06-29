@@ -55,7 +55,7 @@ export default function EditHikeDetailsModal({ data, refetch }) {
     <View>
       <TouchableOpacity
         onPress={() => setIsModalVisible(true)}
-        className="flex justify-center p-3 bg-orange-100 rounded-full"
+        className="flex justify-center p-3 bg-slate-100 rounded-full"
       >
         <EditIcon width={35} height={35} />
       </TouchableOpacity>

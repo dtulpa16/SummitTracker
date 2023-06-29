@@ -84,7 +84,7 @@ export default function HikeDetailsScreen({ route, navigation }) {
         <View>
           <TouchableOpacity
             onPress={() => console.log("Delete Pressed!")}
-            className="flex justify-center p-3 bg-orange-100 rounded-full"
+            className="flex justify-center p-3 bg-slate-100 rounded-full"
           >
             <DeleteIcon width={35} height={35} />
           </TouchableOpacity>

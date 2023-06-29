@@ -15,7 +15,7 @@ export default function MapModal({ latitude, longitude, hikeName }) {
     <View>
       <TouchableOpacity
         onPress={() => setIsModalVisible(true)}
-        className="flex justify-center p-3 bg-orange-100 rounded-full"
+        className="flex justify-center p-3 bg-slate-100 rounded-full"
       >
         <CompassIcon height={35} width={35} />
       </TouchableOpacity>

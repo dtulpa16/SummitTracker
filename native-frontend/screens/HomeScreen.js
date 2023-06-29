@@ -23,16 +23,10 @@ export default function HomeScreen({ navigation }) {
           <ActivityIndicator size="large" color="#fdbb74" />
         </View>
       )}
-      <View className="flex flex-row pb-5 justify-around">
-        <CustomButton
-          onPress={() => navigation.navigate("Past Hikes")}
-          text="Past Hikes"
-        />
-        <CustomButton
-          onPress={() => navigation.navigate("Add Hike")}
-          text="Add a Hike"
-        />
-      </View>
+      <CustomButton
+        onPress={() => navigation.navigate("Add Hike")}
+        text="Let's Hike!"
+      />
       <StatusBar style="auto" />
     </View>
   );

@@ -37,7 +37,7 @@ export default function AddHikeNotes({ hikeId, refetch }) {
     <View>
       <TouchableOpacity
         onPress={() => setIsModalVisible(true)}
-        className="flex justify-center p-3 bg-orange-100 rounded-full"
+        className="flex justify-center p-3 bg-slate-100 rounded-full"
       >
         <AddNoteIcon height={35} width={35} />
       </TouchableOpacity>
