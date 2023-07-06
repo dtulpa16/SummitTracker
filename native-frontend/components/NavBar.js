@@ -4,11 +4,11 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Modal,
+  SafeAreaView,
 } from "react-native";
 import HomeIcon from "../assets/homeIcon.svg";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
-import { SelectList } from "react-native-dropdown-select-list";
 const NavBar = () => {
   const navigation = useNavigation();
   const screenOptions = ["Past Hikes", "Add Hike", "Map (Coming Soon!)"];
@@ -21,7 +21,7 @@ const NavBar = () => {
     setIsOpen(false);
   };
   return (
-    <View className="flex flex-row justify-around items-center w-full">
+    <SafeAreaView className="flex flex-row justify-around items-center w-full h-24">
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <HomeIcon width={38} height={38} />
       </TouchableOpacity>
@@ -37,25 +37,23 @@ const NavBar = () => {
         }}
       >
         <TouchableWithoutFeedback onPress={() => setIsOpen(false)}>
-          <View className="flex-1 justify-start items-center">
-            <View className=" bg-white rounded-b-lg  p-4 mt-24 w-full">
+          <View className="flex-1 justify-start items-end">
+            <View className=" bg-white rounded-bl-lg  p-4 mt-24 border-blue-950 border-2 border-t-0 border-r-0">
               {screenOptions.map((screen) => (
                 <TouchableOpacity
                   key={screen}
                   onPress={() => handleSelect(screen)}
                 >
-                  <Text className=" py-1 text-lg">{screen}</Text>
+                  <Text className="text-blue-950 py-2 text-lg font-semibold">
+                    {screen}
+                  </Text>
                 </TouchableOpacity>
               ))}
             </View>
           </View>
         </TouchableWithoutFeedback>
       </Modal>
-      {/* <TouchableOpacity onPress={() => navigation.navigate("Past Hikes")}>
-        <Text className="text-blue-950 text-xl font-bold">Past Hikes</Text>
-      </TouchableOpacity> */}
-      {/* <TouchableOpacity onPress={()=>navigation.navigate("Home")}>Add Hike</TouchableOpacity> */}
-    </View>
+    </SafeAreaView>
   );
 };
 

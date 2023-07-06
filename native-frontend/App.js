@@ -38,36 +38,9 @@ export default function App() {
           name="Main"
           component={NestedNavigator}
           options={(navigation) => ({
-            headerTitle: () => <NavBar navigation={navigation} />,
+            header: () => <NavBar navigation={navigation} />,
           })}
         />
-        {/* <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={({ navigation }) => ({
-            headerTitle: () => <NavBar navigation={navigation} />,
-          })}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Past Hikes"
-          component={PastHikesScreen}
-          options={({ navigation }) => ({
-            headerTitle: () => <NavBar navigation={navigation} />,
-          })}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Hike Details"
-          component={HikeDetailsScreen}
-          options={({ navigation, route }) => ({
-            headerTitle: () => (
-              <NavBar
-                navigation={navigation}
-                title={route.params?.name ?? "Details"}
-              />
-            ),
-          })}
-        ></Stack.Screen>
-        <Stack.Screen name="Add Hike" component={AddHikeScreen}></Stack.Screen> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
