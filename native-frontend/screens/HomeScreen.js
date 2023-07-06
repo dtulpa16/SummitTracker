@@ -14,12 +14,12 @@ export default function HomeScreen({ navigation }) {
     <View className="flex-1 items-center bg-blue-950 justify-around">
       <View className="flex items-center gap-3">
         <Image source={require("../assets/icon.png")} className=" h-36 w-36" />
-        <Text className="text-orange-50 text-5xl">SummitTracker</Text>
+        <Text className="text-slate-50 text-5xl">SummitTracker</Text>
       </View>
       {!isLoading ? (
         <StatDisplay data={data}></StatDisplay>
       ) : (
-        <View className="absolute inset-0 flex items-center justify-center">
+        <View className="flex flex-1 items-center justify-center m-auto">
           <ActivityIndicator size="large" color="#fdbb74" />
         </View>
       )}
