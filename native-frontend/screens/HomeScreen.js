@@ -14,7 +14,7 @@ export default function HomeScreen({ navigation }) {
     <View className="flex-1 items-center bg-blue-950 justify-around">
       <View className="flex items-center gap-3">
         <Image source={require("../assets/icon.png")} className=" h-36 w-36" />
-        <Text className="text-slate-50 text-5xl">SummitTracker</Text>
+        <Text className="text-white text-5xl">SummitTracker</Text>
       </View>
       {!isLoading ? (
         <StatDisplay data={data}></StatDisplay>

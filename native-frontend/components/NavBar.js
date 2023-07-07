@@ -7,6 +7,8 @@ import {
   SafeAreaView,
 } from "react-native";
 import HomeIcon from "../assets/homeIcon.svg";
+import MenuIcon from "../assets/menu.svg";
+import BackIcon from "../assets/back.svg";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 const NavBar = () => {
@@ -22,11 +24,14 @@ const NavBar = () => {
   };
   return (
     <SafeAreaView className="flex flex-row justify-around items-center w-full h-24">
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <BackIcon width={40} height={40} />
+      </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
         <HomeIcon width={38} height={38} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
-        <HomeIcon width={40} height={40} />
+        <MenuIcon width={40} height={40} />
       </TouchableOpacity>
       <Modal
         animationType="fade"

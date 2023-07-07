@@ -48,7 +48,7 @@ export default function AddHikeScreen({ navigation }) {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View className="flex-1 items-center justify-center bg-blue-950 gap-5">
-          <Text className=" text-orange-50 text-5xl">Add a New Hike</Text>
+          <Text className=" text-white text-5xl">Add a New Hike</Text>
           <View className="gap-3 w-3/5">
             <TextInput
               value={name}

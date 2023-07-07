@@ -17,9 +17,9 @@ const PastHikesScreen = ({ navigation }) => {
     <SafeAreaView className="flex-1 items-center justify-center bg-blue-950">
       {!isLoading ? (
         <>
-          <Text className=" text-slate-50 text-5xl py-4">Past Hikes</Text>
+          <Text className=" text-white text-5xl py-4">Past Hikes</Text>
           <ScrollView className="flex-1 " showsVerticalScrollIndicator={false}>
-            <View className="flex flex-col gap-8 text-orange-50">
+            <View className="flex flex-col gap-8">
               {data?.length > 0 ? (
                 data.map((hike, index) => (
                   <TouchableOpacity
@@ -45,7 +45,7 @@ const PastHikesScreen = ({ navigation }) => {
                 ))
               ) : (
                 <View>
-                  <Text className="text-slate-100 text-2xl font-bold">
+                  <Text className="text-white text-2xl font-bold">
                     No recorded hikes!
                   </Text>
                   <CustomButton
