@@ -12,15 +12,23 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View className="flex-1 items-center bg-blue-950 justify-around">
-      <ScrollView>
-        <View className="flex items-center gap-3 mt-8">
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View className="flex items-center mt-10">
           <Text className="text-white text-6xl">SummitTracker</Text>
           <Image
             source={require("../assets/icon.png")}
             className=" h-52 w-52"
           />
         </View>
-        <Text className="text-white text-4xl text-center">Your Stats</Text>
+        <View className="flex flex-row items-center py-5">
+          <View className=" bg-white flex-1 h-[2px]" />
+          <View>
+            <Text className="text-white text-4xl text-center px-3">
+              Your Stats
+            </Text>
+          </View>
+          <View className=" bg-white flex-1 h-[2px]" />
+        </View>
         {!isLoading ? (
           <StatDisplay data={data}></StatDisplay>
         ) : (
@@ -31,7 +39,7 @@ export default function HomeScreen({ navigation }) {
 
         <StatusBar style="auto" />
       </ScrollView>
-      <View className="pt-6 pb-8">
+      <View className="pt-4 pb-8">
         <CustomButton
           onPress={() => navigation.navigate("Add Hike")}
           text="Let's Hike!"
