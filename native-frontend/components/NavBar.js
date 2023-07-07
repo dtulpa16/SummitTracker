@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Modal,
+  Image,
   SafeAreaView,
 } from "react-native";
 import HomeIcon from "../assets/homeIcon.svg";
@@ -23,12 +24,12 @@ const NavBar = () => {
     setIsOpen(false);
   };
   return (
-    <SafeAreaView className="flex flex-row justify-around items-center w-full h-24">
+    <SafeAreaView className="flex flex-row justify-around items-center w-full h-28">
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <BackIcon width={40} height={40} />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-        <HomeIcon width={38} height={38} />
+        <Image source={require("../assets/icon.png")} className=" h-20 w-20" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
         <MenuIcon width={40} height={40} />
@@ -43,7 +44,7 @@ const NavBar = () => {
       >
         <TouchableWithoutFeedback onPress={() => setIsOpen(false)}>
           <View className="flex-1 justify-start items-end">
-            <View className=" bg-white rounded-bl-lg  p-4 mt-24 border-blue-950 border-2 border-t-0 border-r-0">
+            <View className=" bg-white rounded-bl-lg  p-4 mt-28 border-blue-950 border-2 border-t-0 border-r-0">
               {screenOptions.map((screen) => (
                 <TouchableOpacity
                   key={screen}

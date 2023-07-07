@@ -12,14 +12,11 @@ const StatDisplay = ({ data }) => {
     }, [])
   );
   return (
-    <View className="flex flex-col gap-5 items-center">
+    <View className="flex flex-col gap-3 m-auto">
       {/* 50,000 feet altitude goal */}
       <View className="flex flex-col items-center">
         {data?.altitude ? (
           <>
-            <Text className="text-2xl font-bold text-white pb-3">
-              {Math.round(data.altitude)} / 50,000 ft. Elevation
-            </Text>
             <AnimatedCircularProgress
               key={key}
               size={150}
@@ -30,6 +27,9 @@ const StatDisplay = ({ data }) => {
               backgroundColor="#ffebee"
               children={() => <MountainIcon width="75%" height="75%" />}
             />
+            <Text className="text-2xl font-bold text-white pb-3 text-center">
+              {Math.round(data.altitude)} / 50,000{"\n"}feet climbed
+            </Text>
           </>
         ) : null}
       </View>
@@ -37,9 +37,6 @@ const StatDisplay = ({ data }) => {
       <View className="flex flex-col items-center">
         {data?.length ? (
           <>
-            <Text className="text-2xl font-bold text-white pb-3">
-              {Math.round(data.length)} / 100 Miles
-            </Text>
             <AnimatedCircularProgress
               key={key}
               size={150}
@@ -50,6 +47,9 @@ const StatDisplay = ({ data }) => {
               backgroundColor="#fff3e0"
               children={() => <ShoeIcon width="75%" height="75%" />}
             />
+            <Text className="text-2xl font-bold text-white pb-3 text-center">
+              {Math.round(data.length)} / 100{"\n"}miles hiked
+            </Text>
           </>
         ) : null}
       </View>
