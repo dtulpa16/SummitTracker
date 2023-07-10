@@ -31,6 +31,7 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
     const newImagesArray = [...images];
     newImagesArray.splice(index, 1);
     setImages(newImagesArray);
+    notify("✔️Images Removed!", "success", theme)
   };
   const goToNextImage = () => {
     setCurrentImageIndex((currentImageIndex + 1) % images.length);
