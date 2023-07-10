@@ -60,7 +60,7 @@ const AddHikeModal: React.FC<ThemeProps & ModalProps> = ({
     <div
       className={`${
         theme === "dark" ? "md:bg-gray-900 bg-gray-900 text-white" : "bg-gray-900 text-black"
-      } fixed inset-0 flex items-center justify-center z-40 bg-opacity-80 md:bg-opacity-60`}
+      } fixed inset-0 flex items-center justify-center z-50 bg-opacity-80 md:bg-opacity-60`}
     >
       <div
         className={`${

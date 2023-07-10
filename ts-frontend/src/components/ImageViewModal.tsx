@@ -33,7 +33,7 @@ const ImageViewModal: FC<ImageViewModalProps & ThemeProps> = ({
     <div
       className={`${
         theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-900 text-black"
-      } fixed inset-0 flex items-center justify-center z-40 bg-opacity-90 md:bg-opacity-90`}
+      } fixed inset-0 flex items-center justify-center z-50 bg-opacity-90 md:bg-opacity-90`}
     >
       <div
         className={`${
