@@ -32,35 +32,33 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [showNoteModal, setShowNoteModal] = useState<boolean>(false);
   const [showEditModal, setShowEditModal] = useState<boolean>(false);
-  const [image, setImage] = useState<File | null>(null);
+  const [images, setImages] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   options[1].onClick = () => {
+    fileInputRef.current?.setAttribute("multiple", "multiple");
     fileInputRef.current?.click();
-    setShowOptions(false)
-  }; // Overwrite the onClick of the "Add Image" button
+    setShowOptions(false);
+  };
   options[0].onClick = () => {
     setShowNoteModal(true);
-    setShowOptions(false)
+    setShowOptions(false);
   }; // Overwrite the onClick of the "Add Note" button
   options[2].onClick = () => {
     setShowEditModal(true);
-    setShowOptions(false)
+    setShowOptions(false);
   }; // Overwrite the onClick of the "Edit Hike" button
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files ? event.target.files[0] : null;
-    if (file) {
-      setImage(file);
-      setShowModal(true);
-    }
+    const files = event.target.files ? Array.from(event.target.files) : [];
+    setImages(files);
+    setShowModal(true);
   };
   return (
     <div className="">
       <DotsVerticalIcon
         onClick={() => setShowOptions(!showOptions)}
-
-        className={`w-7 ${
+        className={`h-5 w-5 md:h-7 md:w-7 ${
           theme === "dark"
             ? "bg-gray-600 text-white "
             : "bg-white text-blue-500 "
@@ -87,10 +85,10 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
           ))}
         </div>
       ) : null}
-      {image && showModal && (
+      {images.length > 0 && showModal && (
         <ImagePreviewModal
-          image={image}
-          setImage={setImage}
+          images={images}
+          setImages={setImages}
           showModal={showModal}
           setShowModal={setShowModal}
           theme={theme}
@@ -102,13 +100,12 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
         theme={theme}
         setIsOpen={setShowNoteModal}
         hike={hike}
-        />
+      />
       <EditHikeModal
         isOpen={showEditModal}
         theme={theme}
         setIsOpen={setShowEditModal}
         hike={hike}
-
       />
     </div>
   );
