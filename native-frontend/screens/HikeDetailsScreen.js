@@ -39,26 +39,27 @@ export default function HikeDetailsScreen({ route, navigation }) {
   // If data has loaded, display hike details
   return data && !isLoading ? (
     <View className="flex-1 bg-blue-950 pb-12">
-      <ScrollView className=" pl-4 pt-4 gap-2">
-        <Text className="text-4xl font-bold text-orange-50 self-center">
+      <ScrollView className=" pl-4 pt-4 gap-4">
+        <Text className="text-4xl font-bold text-white self-center">
           {data?.name}
         </Text>
-        <Text className="text-xl  text-orange-50 self-center">
-          {formatDate()}
-        </Text>
-        <Text className="text-lg font-bold text-orange-50">
-          Length: {data?.length} miles
-        </Text>
-        <Text className="text-lg font-bold text-orange-50">
-          Altitude: {data?.altitude} ft
-        </Text>
-        <Text className="text-lg font-bold text-orange-50">Notes:</Text>
+        <Text className="text-2xl  text-white self-center">{formatDate()}</Text>
+
+        <View className="flex flex-row justify-around">
+          <Text className="text-2xl font-bold text-white text-center">
+            {data?.length} miles{"\n"}hiked
+          </Text>
+          <Text className="text-2xl font-bold text-white text-center">
+            {data?.altitude} feet{"\n"}climbed
+          </Text>
+        </View>
+        <Text className="text-3xl font-bold text-white">Notes:</Text>
 
         {/* Display hike notes */}
         <View>
           <HikeNotes notes={data.notes} />
         </View>
-        <Text className="text-2xl font-bold text-orange-50 pb-2">Photos:</Text>
+        <Text className="text-3xl font-bold text-white pb-4">Photos:</Text>
 
         {/* Display hike images */}
         <HikeImages hikeId={data._id} />
@@ -84,7 +85,7 @@ export default function HikeDetailsScreen({ route, navigation }) {
         <View>
           <TouchableOpacity
             onPress={() => console.log("Delete Pressed!")}
-            className="flex justify-center p-3 bg-orange-100 rounded-full"
+            className="flex justify-center p-3 bg-slate-100 rounded-full"
           >
             <DeleteIcon width={35} height={35} />
           </TouchableOpacity>

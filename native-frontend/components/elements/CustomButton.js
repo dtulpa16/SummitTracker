@@ -12,6 +12,7 @@ const CustomButton = ({
         customButtonStyle ??
         "flex justify-center p-4 bg-orange-200 rounded-xl border-2 border-blue-950 m-auto"
       }
+      onPress={onPress}
     >
       <Text
         onPress={onPress}

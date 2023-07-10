@@ -7,39 +7,40 @@ import HomeScreen from "./screens/HomeScreen";
 import PastHikesScreen from "./screens/PastHikesScreen";
 import HikeDetailsScreen from "./screens/HikeDetailsScreen";
 import AddHikeScreen from "./screens/AddHikeScreen";
+import NavBar from "./components/NavBar";
 const Stack = createNativeStackNavigator();
+const NestedStack = createNativeStackNavigator();
 
+function NestedNavigator() {
+  return (
+    <NestedStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <NestedStack.Screen name="Home" component={HomeScreen} />
+      <NestedStack.Screen name="Past Hikes" component={PastHikesScreen} />
+      <NestedStack.Screen name="Hike Details" component={HikeDetailsScreen} />
+      <NestedStack.Screen name="Add Hike" component={AddHikeScreen} />
+    </NestedStack.Navigator>
+  );
+}
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerStyle: {
-            backgroundColor: "#172554",
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-            color: "white",
-          },
+          headerBackTitleVisible: false,
+          headerBackVisible: false,
         }}
       >
         <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          screenOptions={{ headerShown: false }}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Past Hikes"
-          component={PastHikesScreen}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Hike Details"
-          component={HikeDetailsScreen}
-          screenOptions={{ headerShown: true }}
-          options={({ route }) => ({ title: route.params.name || "Details" })}
-        ></Stack.Screen>
-        <Stack.Screen name="Add Hike" component={AddHikeScreen}></Stack.Screen>
+          name="Main"
+          component={NestedNavigator}
+          options={(navigation) => ({
+            header: () => <NavBar navigation={navigation} />,
+          })}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  ScrollView,
-  ActivityIndicator,
-} from "react-native";
+import { View, Image, ActivityIndicator } from "react-native";
 import useFetch from "../hooks/useFetch";
 import { URL_HOST } from "../utils/urlHost";
 import LoadingIcon from "../assets/loading.svg";
@@ -42,7 +35,7 @@ export const ImageCard = ({ image }) => {
         </View>
       )}
       <Image
-        source={{ uri: `${URL_HOST}${image?.imageUrl}` }}
+        source={{ uri: `${image?.imageUrl}` }}
         className="absolute w-[195px] h-[195px]"
         onLoadEnd={() => setIsLoading(false)}
         // style={{ width: "100%", height: "100%" }}
