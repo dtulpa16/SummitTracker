@@ -76,7 +76,7 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
             theme === "dark"
               ? "bg-gray-600 text-white "
               : "bg-white text-blue-500 "
-          } absolute flex flex-col p-2 rounded-md mt-1 z-10`}
+          } absolute flex flex-col p-2 rounded-md mt-1 z-50`}
         >
           {options.map((button, index) => (
             <button className="p-2" key={index} onClick={button.onClick}>

@@ -147,7 +147,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
       <div className="h-[250px] md:w-[250px] min-w-[200px] bg-slate-400 relative overflow-hidden">
         <button
           onClick={goToPreviousImage}
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 "
+          className="absolute left-0 top-1/2 transform -translate-y-1/2 z-40 "
         >
           <ChevronLeftIcon className="h-7 w-7 md:h-8 md:w-8 text-white" />
         </button>

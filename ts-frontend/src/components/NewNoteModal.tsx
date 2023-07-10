@@ -48,7 +48,7 @@ const NewNoteModal: React.FC<ThemeProps & ModalProps> = ({
   return isOpen ? (
     <div
     className={`${
-      theme === "dark" ? "md:bg-gray-600 bg-gray-900 text-white" : "bg-blue-300"
+      theme === "dark" ? "md:bg-gray-900 bg-gray-900 text-white" : "bg-gray-900 text-black"
     } fixed inset-0 flex items-center justify-center z-40 bg-opacity-80 md:bg-opacity-60`}
     >
       <div
