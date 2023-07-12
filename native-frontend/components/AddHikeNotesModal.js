@@ -12,25 +12,31 @@ import axios from "axios";
 import { URL_HOST } from "../utils/urlHost";
 import AddNoteIcon from "../assets/addNoteIcon.svg";
 import CustomButton from "./elements/CustomButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { credentials } from "../utils/keys";
 export default function AddHikeNotes({ hikeId, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [text, setText] = useState("");
 
   const handleSubmit = async () => {
     try {
-      let formData = {
-        text: text,
-      };
-      let response = await axios.post(
-        `${URL_HOST}/api/summit/${hikeId}/note`,
-        formData
-      );
-      console.log("POST note response: ", response.data);
-      setIsModalVisible(false);
+      const userValidated = await verifyLogin();
+      if (userValidated) {
+        let formData = {
+          text: text,
+        };
+        let response = await axios.post(
+          `${URL_HOST}/api/summit/${hikeId}/note`,
+          formData
+        );
+        refetch();
+      } else {
+        console.log("Invalid login credentials!");
+      }
     } catch (error) {
       console.log("Error Posting Note: ", error);
     }
-    refetch();
+    setIsModalVisible(false);
   };
 
   return (

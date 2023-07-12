@@ -12,13 +12,22 @@ import MenuIcon from "../assets/menu.svg";
 import BackIcon from "../assets/back.svg";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
+import LoginModal from "./LoginModal";
 const NavBar = () => {
   const navigation = useNavigation();
-  const screenOptions = ["Past Hikes", "Add Hike", "Map (Coming Soon!)"];
+  const screenOptions = [
+    "Past Hikes",
+    "Add Hike",
+    "Map (Coming Soon!)",
+    "Log In",
+  ];
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const handleSelect = (value) => {
-    console.log(`Pressed ${value}`);
-    if (value != "Map (Coming Soon!)") {
+    if (value == "Map (Coming Soon!)") {
+    } else if (value == "Log In") {
+      setIsLoginOpen(true);
+    } else {
       navigation.navigate(value);
     }
     setIsOpen(false);
@@ -59,6 +68,7 @@ const NavBar = () => {
           </View>
         </TouchableWithoutFeedback>
       </Modal>
+      <LoginModal isLoginOpen={isLoginOpen} setIsLoginOpen={setIsLoginOpen} />
     </SafeAreaView>
   );
 };
