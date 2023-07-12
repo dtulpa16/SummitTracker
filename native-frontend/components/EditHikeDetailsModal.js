@@ -9,15 +9,14 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import { googleMapsKey } from "../utils/keys";
 import axios from "axios";
 import { URL_HOST } from "../utils/urlHost";
 import { getHikeCoords } from "../screens/AddHikeScreen";
-import { SvgUri } from "react-native-svg";
 import EditIcon from "../assets/editIcon.svg";
 import CustomButton from "./elements/CustomButton";
 import { credentials } from "../utils/keys";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { verifyLogin } from "../utils/helpers";
 export default function EditHikeDetailsModal({ data, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState(data.name);
@@ -28,12 +27,8 @@ export default function EditHikeDetailsModal({ data, refetch }) {
     Platform.OS === "ios" ? "numbers-and-punctuation" : "decimal-pad";
   const handleSubmit = async () => {
     try {
-      const username = await AsyncStorage.getItem("username");
-      const password = await AsyncStorage.getItem("password");
-      if (
-        username == credentials.username &&
-        password == credentials.password
-      ) {
+      const userValidated = await verifyLogin();
+      if (userValidated) {
         let formData = {
           name: name,
           altitude: parseFloat(altitude),

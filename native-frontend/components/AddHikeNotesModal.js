@@ -20,12 +20,8 @@ export default function AddHikeNotes({ hikeId, refetch }) {
 
   const handleSubmit = async () => {
     try {
-      const username = await AsyncStorage.getItem("username");
-      const password = await AsyncStorage.getItem("password");
-      if (
-        username == credentials.username &&
-        password == credentials.password
-      ) {
+      const userValidated = await verifyLogin();
+      if (userValidated) {
         let formData = {
           text: text,
         };
