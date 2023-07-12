@@ -15,6 +15,7 @@ import {
 import axios from "axios";
 import { URL_HOST } from "../utils/urlHost";
 import CustomButton from "../components/elements/CustomButton";
+import { verifyLogin } from "../utils/helpers";
 export default function AddHikeScreen({ navigation }) {
   const [name, setName] = useState("");
   const [altitude, setAltitude] = useState("");
@@ -23,20 +24,23 @@ export default function AddHikeScreen({ navigation }) {
     Platform.OS === "ios" ? "numbers-and-punctuation" : "decimal-pad";
   const handleSubmit = async () => {
     try {
-      let { lat, long } = await getHikeCoords(name);
-      debugger;
-      console.log();
-      let formData = {
-        name: name,
-        altitude: parseFloat(altitude),
-        length: parseFloat(length),
-        coordinates: `${lat}, ${long}`,
-      };
-      let response = await axios.post(`${URL_HOST}/api/summit/`, formData);
-      navigation.navigate("Hike Details", {
-        hikeId: response?.data?._id,
-        name: response?.data?.name,
-      });
+      const userValidated = await verifyLogin();
+      if (userValidated) {
+        let { lat, long } = await getHikeCoords(name);
+        let formData = {
+          name: name,
+          altitude: parseFloat(altitude),
+          length: parseFloat(length),
+          coordinates: `${lat}, ${long}`,
+        };
+        let response = await axios.post(`${URL_HOST}/api/summit/`, formData);
+        navigation.navigate("Hike Details", {
+          hikeId: response?.data?._id,
+          name: response?.data?.name,
+        });
+      } else {
+        console.log("Invalid login credentials!");
+      }
     } catch (error) {
       console.log("Error in postHike: ", error);
     }
@@ -55,7 +59,6 @@ export default function AddHikeScreen({ navigation }) {
               onChangeText={(value) => setName(value)}
               placeholder="Hike Name"
               placeholderTextColor="#60605e"
-              keyboardType={keyboardType}
               className="bg-slate-50 p-4 rounded-md text-blue-950"
             />
             <TextInput
@@ -88,7 +91,6 @@ export default function AddHikeScreen({ navigation }) {
 }
 
 export const getHikeCoords = async (hikeName) => {
-  debugger;
   try {
     let response = await axios.get(
       `https://google-maps-geocoding.p.rapidapi.com/geocode/json?address=${hikeName}&language=en`,
