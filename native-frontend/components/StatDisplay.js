@@ -24,7 +24,7 @@ const StatDisplay = ({ data }) => {
               rotation={0}
               fill={Math.floor(data.altitude / 500)}
               tintColor="#ef5350"
-              backgroundColor="#ffebee"
+              backgroundColor="#FFFFFF"
               children={() => <MountainIcon width="75%" height="75%" />}
             />
             <Text className="text-2xl font-bold text-white pb-3 text-center">
@@ -47,7 +47,7 @@ const StatDisplay = ({ data }) => {
               rotation={0}
               fill={Math.floor(data.length)}
               tintColor="#ffa726"
-              backgroundColor="#fff3e0"
+              backgroundColor="#FFFFFF"
               children={() => <ShoeIcon width="75%" height="75%" />}
             />
           </>
