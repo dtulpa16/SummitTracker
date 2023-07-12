@@ -182,6 +182,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
         theme={theme}
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
+        setImages = {setimage}
         images={image}
         imageIndex={imageIndex}
         setImageIndex={setImageIndex}
