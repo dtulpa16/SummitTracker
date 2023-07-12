@@ -48,7 +48,7 @@ const ImageViewModal: FC<ImageViewModalProps & ThemeProps> = ({
             alt="Preview"
           />
         </div>
-        <div className="flex flex-row justify-between mt-2">
+        <div className="flex flex-row justify-between mt-4">
           <button
             className={`${
               theme === "dark"
@@ -60,6 +60,18 @@ const ImageViewModal: FC<ImageViewModalProps & ThemeProps> = ({
             <ChevronLeftIcon className="h-8 w-8" />
           </button>
           <button
+            onClick={() => {
+              setIsOpen(false);
+            }}
+            className={`${
+              theme === "dark"
+                ? " bg-gray-500 text-white"
+                : "bg-blue-500 text-white"
+            } px-6 py-2 rounded shadow text-lg font-semibold `}
+          >
+            Close
+          </button>
+          <button
             className={`${
               theme === "dark"
                 ? "bg-gray-500 hover:bg-grey-700"
@@ -68,20 +80,6 @@ const ImageViewModal: FC<ImageViewModalProps & ThemeProps> = ({
             onClick={goToNextImage}
           >
             <ChevronRightIcon className="h-8 w-8" />
-          </button>
-        </div>
-        <div className="flex flex-row justify-center">
-          <button
-            onClick={() => {
-              setIsOpen(false);
-            }}
-            className={`${
-              theme === "dark"
-                ? " bg-gray-500 text-white"
-                : "bg-blue-500 text-white"
-            }  mt-4 px-6 py-2 rounded shadow text-lg font-semibold `}
-          >
-            Close
           </button>
         </div>
       </div>

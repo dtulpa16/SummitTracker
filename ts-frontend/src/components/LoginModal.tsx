@@ -50,6 +50,7 @@ const LoginModal: React.FC<ThemeProps & ModalProps> = ({
         <form onSubmit={handleSubmit} className="flex flex-col">
           <label>Username</label>
           <input
+            required
             type="text"
             name="username"
             value={username}
@@ -61,7 +62,8 @@ const LoginModal: React.FC<ThemeProps & ModalProps> = ({
           />
           <label>Password</label>
           <input
-            type="text"
+            required
+            type="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

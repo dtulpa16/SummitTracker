@@ -35,15 +35,16 @@ const HikeOptionsMenu: React.FC<ThemeProps & HikeProps> = ({ theme, hike }) => {
   const [images, setImages] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  options[1].onClick = () => {
-    fileInputRef.current?.setAttribute("multiple", "multiple");
-    fileInputRef.current?.click();
-    setShowOptions(false);
-  };
   options[0].onClick = () => {
     setShowNoteModal(true);
     setShowOptions(false);
   }; // Overwrite the onClick of the "Add Note" button
+  options[1].onClick = () => {
+
+    fileInputRef.current?.setAttribute("multiple", "multiple");
+    fileInputRef.current?.click();
+    setShowOptions(false);
+  };
   options[2].onClick = () => {
     setShowEditModal(true);
     setShowOptions(false);
