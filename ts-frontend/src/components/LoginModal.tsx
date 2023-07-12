@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { notify } from "../helpers/notify";
 type ThemeProps = {
   theme: "light" | "dark";
 };
@@ -12,7 +12,6 @@ const LoginModal: React.FC<ThemeProps & ModalProps> = ({
   theme,
   isOpen,
   setIsOpen,
-
 }) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -20,15 +19,27 @@ const LoginModal: React.FC<ThemeProps & ModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-
+    if (
+      username === process.env.REACT_APP_USERNAME &&
+      password === process.env.REACT_APP_PASSWORD
+    ) {
+      // Store credentials in localStorage
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
+      notify("👋Login Successful!", "success", theme);
+    } else {
+      notify("😞Incorrect username or password", "error", theme);
+    }
+    setUsername("");
+    setPassword("");
     setIsOpen(false);
   };
 
   return isOpen ? (
     <div
-    className={`${
-      theme === "dark" ? "md:bg-gray-900 bg-gray-900 text-white" : "bg-gray-900 text-black"
-    } fixed inset-0 flex items-center justify-center z-50 bg-opacity-80 md:bg-opacity-60`}
+      className={`${
+        theme === "dark" ? " bg-gray-900 text-white" : "bg-gray-900 text-black"
+      } fixed inset-0 flex items-center justify-center z-50 bg-opacity-80 md:bg-opacity-80`}
     >
       <div
         className={`${
