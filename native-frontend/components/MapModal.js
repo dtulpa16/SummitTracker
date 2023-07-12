@@ -23,7 +23,7 @@ export default function MapModal({ latitude, longitude, hikeName }) {
         <TouchableWithoutFeedback onPress={() => setIsModalVisible(false)}>
           <View className=" absolute  h-full w-full m-auto bg-[#00000080]" />
         </TouchableWithoutFeedback>
-        <View className="flex bg-orange-100 rounded-lg items-center justify-center m-auto h-3/5 w-11/12">
+        <View className="flex bg-slate-50 rounded-lg items-center justify-center m-auto h-3/5 w-11/12">
           <MapComponent
             latitude={latitude}
             longitude={longitude}
