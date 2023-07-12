@@ -4,6 +4,7 @@ import axios from "axios";
 import { HikeFetchContext } from "./HikeList";
 import { notify } from "../helpers/notify";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import { isLoggedIn } from "../helpers/simpleAuth";
 
 type ImageProps = {
   images: File[];
@@ -31,7 +32,7 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
     const newImagesArray = [...images];
     newImagesArray.splice(index, 1);
     setImages(newImagesArray);
-    notify("✔️Images Removed!", "success", theme)
+    notify("✔️Images Removed!", "success", theme);
   };
   const goToNextImage = () => {
     setCurrentImageIndex((currentImageIndex + 1) % images.length);
@@ -42,11 +43,11 @@ const ImagePreviewModal: React.FC<ImageProps & ThemeProps> = ({
       (currentImageIndex - 1 + images.length) % images.length
     );
   };
+
   const handleSubmit = async () => {
     setShowModal(false);
-    let enteredPassword = prompt("Please enter password:");
-    if (enteredPassword !== process.env.REACT_APP_PERMISSION_PASSWORD) {
-      notify("😞Incorrect password", "error", theme);
+    if (!isLoggedIn()) {
+      notify("😞Incorrect Login", "error", theme);
     } else {
       try {
         debugger;

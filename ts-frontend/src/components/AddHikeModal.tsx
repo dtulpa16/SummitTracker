@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { HikeFetchContext } from "./HikeList";
 import axios from "axios";
 import { notify } from "../helpers/notify";
+import { isLoggedIn } from "../helpers/simpleAuth";
+
 type ThemeProps = {
   theme: "light" | "dark";
 };
@@ -32,9 +34,8 @@ const AddHikeModal: React.FC<ThemeProps & ModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const enteredPassword = prompt("Please enter password:");
-    if (enteredPassword !== process.env.REACT_APP_PERMISSION_PASSWORD) {
-      notify("😞Incorrect password", "error", theme);
+    if (!isLoggedIn()) {
+      notify("😞Incorrect Login", "error", theme);
     } else {
       try {
         let payload = {
@@ -59,8 +60,10 @@ const AddHikeModal: React.FC<ThemeProps & ModalProps> = ({
   return isOpen ? (
     <div
       className={`${
-        theme === "dark" ? "md:bg-gray-900 bg-gray-900 text-white" : "bg-gray-900 text-black"
-      } fixed inset-0 flex items-center justify-center z-50 bg-opacity-80 md:bg-opacity-60`}
+        theme === "dark"
+          ? "md:bg-gray-900 bg-gray-900 text-white"
+          : "bg-gray-900 text-black"
+      } fixed inset-0 flex items-center justify-center z-50 bg-opacity-80 md:bg-opacity-80`}
     >
       <div
         className={`${

@@ -23,7 +23,7 @@ const NewNoteModal: React.FC<ThemeProps & ModalProps> = ({
   const [text, settext] = useState<string>("");
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isLoggedIn) {
+    if (!isLoggedIn()) {
       notify("😞Incorrect Login", "error", theme);
     } else {
       try {

@@ -3,6 +3,8 @@ import { HikeFetchContext } from "./HikeList";
 import axios from "axios";
 import { Hike } from "../interfaces/Hike";
 import { notify } from "../helpers/notify";
+import { isLoggedIn } from "../helpers/simpleAuth";
+
 type ThemeProps = {
   theme: "light" | "dark";
 };
@@ -36,17 +38,19 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const enteredPassword = prompt("Please enter password:");
-    if (enteredPassword !== process.env.REACT_APP_PERMISSION_PASSWORD) {
-      notify("😞Incorrect password", "error", theme);
-    }else{
+    if (!isLoggedIn()) {
+      notify("😞Incorrect Login", "error", theme);
+    } else {
       try {
         let payload = {
           name: fields.name,
           altitude: Number(fields.altitude),
           length: Number(fields.length),
         };
-        await axios.put(`${process.env.REACT_APP_URL_HOST}/api/summit/${hike._id}`, payload);
+        await axios.put(
+          `${process.env.REACT_APP_URL_HOST}/api/summit/${hike._id}`,
+          payload
+        );
         notify("⛰️Hike successfully updated!", "success", theme);
         fetchHikes && fetchHikes();
       } catch (error) {
@@ -54,15 +58,21 @@ const EditHikeModal: React.FC<ThemeProps & ModalProps> = ({
         console.log("Error in postHike: ", error);
       }
     }
-
+    setFields({
+      name: hike.name,
+      altitude: hike.altitude,
+      length: hike.length,
+    });
     setIsOpen(false);
   };
 
   return isOpen ? (
     <div
-    className={`${
-      theme === "dark" ? "md:bg-gray-900 bg-gray-900 text-white" : "bg-gray-900 text-black"
-    } fixed inset-0 flex items-center justify-center z-50 bg-opacity-80 md:bg-opacity-60`}
+      className={`${
+        theme === "dark"
+          ? "md:bg-gray-900 bg-gray-900 text-white"
+          : "bg-gray-900 text-black"
+      } fixed inset-0 flex items-center justify-center z-50 bg-opacity-80 md:bg-opacity-80`}
     >
       <div
         className={`${
