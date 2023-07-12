@@ -56,7 +56,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Hike Name"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-orange-50 p-4 rounded-md text-blue-950"
+              className="bg-slate-50 p-4 rounded-md text-blue-950"
             />
             <TextInput
               value={altitude}
@@ -64,7 +64,7 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Altitude"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-orange-50 p-4 rounded-md text-blue-950"
+              className="bg-slate-50 p-4 rounded-md text-blue-950"
             />
             <TextInput
               value={length}
@@ -72,12 +72,12 @@ export default function AddHikeScreen({ navigation }) {
               placeholder="Length (miles)"
               placeholderTextColor="#60605e"
               keyboardType={keyboardType}
-              className="bg-orange-50 p-4 rounded-md text-blue-950"
+              className="bg-slate-50 p-4 rounded-md text-blue-950"
             />
-          </View>
-          <View className="flex flex-row justify-between">
-            <CustomButton onPress={handleSubmit} text="Submit" />
-            <CustomButton onPress={() => navigation.goBack()} text="Cancel" />
+            <View className="flex flex-row justify-between">
+              <CustomButton onPress={handleSubmit} text="Submit" />
+              <CustomButton onPress={() => navigation.goBack()} text="Cancel" />
+            </View>
           </View>
 
           <StatusBar style="auto" />

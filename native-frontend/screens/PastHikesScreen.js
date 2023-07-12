@@ -23,7 +23,7 @@ const PastHikesScreen = ({ navigation }) => {
               {data?.length > 0 ? (
                 data.map((hike, index) => (
                   <TouchableOpacity
-                    className="flex p-4 rounded-lg drop-shadow-md bg-orange-100 min-h-[150] min-w-[200] gap-2"
+                    className="flex p-4 rounded-lg drop-shadow-md bg-white min-h-[150] min-w-[200] gap-2"
                     key={index}
                     onPress={() =>
                       navigation.navigate("Hike Details", {
