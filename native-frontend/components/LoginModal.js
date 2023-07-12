@@ -16,8 +16,8 @@ const LoginModal = ({ isLoginOpen, setIsLoginOpen }) => {
   const [password, setPassword] = useState("");
   const handleSubmit = async () => {
     try {
-      await AsyncStorage.setItem("username", username);
       await AsyncStorage.setItem("password", password);
+      await AsyncStorage.setItem("username", username);
     } catch (e) {
       console.log("Error storing login credentials: ", e);
     }

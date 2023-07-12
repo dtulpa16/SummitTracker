@@ -16,7 +16,8 @@ import { getHikeCoords } from "../screens/AddHikeScreen";
 import { SvgUri } from "react-native-svg";
 import EditIcon from "../assets/editIcon.svg";
 import CustomButton from "./elements/CustomButton";
-
+import { credentials } from "../utils/keys";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function EditHikeDetailsModal({ data, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState(data.name);
@@ -27,28 +28,37 @@ export default function EditHikeDetailsModal({ data, refetch }) {
     Platform.OS === "ios" ? "numbers-and-punctuation" : "decimal-pad";
   const handleSubmit = async () => {
     try {
-      let formData = {
-        name: name,
-        altitude: parseFloat(altitude),
-        length: parseFloat(length),
-      };
-      if (name === data.name) {
-        formData.coordinates = coordinates;
+      const username = await AsyncStorage.getItem("username");
+      const password = await AsyncStorage.getItem("password");
+      if (
+        username == credentials.username &&
+        password == credentials.password
+      ) {
+        let formData = {
+          name: name,
+          altitude: parseFloat(altitude),
+          length: parseFloat(length),
+          coordinates: coordinates,
+        };
+        //TODO: Update Geocoding to include state for proper geolocating
+        // if (name === data.name) {
+        //   formData.coordinates = coordinates;
+        // } else {
+        //   let { lat, long } = await getHikeCoords(name);
+        //   formData.coordinates = `${lat}, ${long}`;
+        // }
+        let response = await axios.put(
+          `${URL_HOST}/api/summit/${data._id}`,
+          formData
+        );
+        refetch();
       } else {
-        let { lat, long } = await getHikeCoords(name);
-        formData.coordinates = `${lat}, ${long}`;
+        console.log("Invalid login credentials!");
       }
-      console.log("form data:", formData);
-      // let response = await axios.put(
-      //   `${URL_HOST}/api/summit/`,
-      //   formData
-      // );
-      // console.log("PUT hike response: ", response.data);
-      setIsModalVisible(false);
     } catch (error) {
       console.log("Error PUTting Hike: ", error);
     }
-    refetch();
+    setIsModalVisible(false);
   };
 
   return (
