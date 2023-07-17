@@ -14,8 +14,7 @@ import { URL_HOST } from "../utils/urlHost";
 import { getHikeCoords } from "../screens/AddHikeScreen";
 import EditIcon from "../assets/editIcon.svg";
 import CustomButton from "./elements/CustomButton";
-import { credentials } from "../utils/keys";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { verifyLogin } from "../utils/helpers";
 export default function EditHikeDetailsModal({ data, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -47,8 +46,6 @@ export default function EditHikeDetailsModal({ data, refetch }) {
           formData
         );
         refetch();
-      } else {
-        console.log("Invalid login credentials!");
       }
     } catch (error) {
       console.log("Error PUTting Hike: ", error);

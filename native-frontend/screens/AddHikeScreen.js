@@ -16,6 +16,7 @@ import axios from "axios";
 import { URL_HOST } from "../utils/urlHost";
 import CustomButton from "../components/elements/CustomButton";
 import { verifyLogin } from "../utils/helpers";
+
 export default function AddHikeScreen({ navigation }) {
   const [name, setName] = useState("");
   const [altitude, setAltitude] = useState("");
@@ -38,8 +39,6 @@ export default function AddHikeScreen({ navigation }) {
           hikeId: response?.data?._id,
           name: response?.data?.name,
         });
-      } else {
-        console.log("Invalid login credentials!");
       }
     } catch (error) {
       console.log("Error in postHike: ", error);

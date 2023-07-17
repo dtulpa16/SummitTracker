@@ -56,8 +56,6 @@ export default function HikeDetailsScreen({ route, navigation }) {
             },
           ]
         );
-      } else {
-        console.log("Invalid login credentials");
       }
     } catch (e) {
       console.log("Error in createDeleteAlert: ", e);
@@ -65,7 +63,6 @@ export default function HikeDetailsScreen({ route, navigation }) {
   };
 
   const handleDelete = async () => {
-    console.log("Hello from HandleDelete!");
     try {
       let response = await axios.delete(`${URL_HOST}/api/summit/${data._id}`);
       refetch();

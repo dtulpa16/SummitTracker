@@ -46,8 +46,6 @@ export default function SelectedImagesModal({
           });
         });
         refetch();
-      } else {
-        console.log("Invalid Login Credentials!");
       }
     } catch (error) {
       console.log("Error uploading image", error);

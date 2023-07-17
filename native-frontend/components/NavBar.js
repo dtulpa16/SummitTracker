@@ -13,6 +13,7 @@ import BackIcon from "../assets/back.svg";
 import { useNavigation } from "@react-navigation/native";
 import { useState, useEffect } from "react";
 import LoginModal from "./LoginModal";
+import Toast from "react-native-toast-message";
 const NavBar = () => {
   const navigation = useNavigation();
   const screenOptions = [
@@ -25,6 +26,10 @@ const NavBar = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const handleSelect = (value) => {
     if (value == "Map (Coming Soon!)") {
+      Toast.show({
+        type: "success",
+        text1: "You pressed Map!",
+      });
     } else if (value == "Log In") {
       setIsLoginOpen(true);
     } else {
