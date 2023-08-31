@@ -2,60 +2,48 @@ import {
   View,
   Text,
   StatusBar,
-  Button,
-  TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  ActivityIndicator,
+  Switch,
 } from "react-native";
 import { URL_HOST } from "../utils/urlHost";
 import useFetch from "../hooks/useFetch";
-import CustomButton from "../components/elements/CustomButton";
-import { ActivityIndicator } from "react-native";
+import { useState } from "react";
+import PastHikeList from "../components/PastHikeList";
+import AllHikesMap from "../components/AllHikesMap";
 const PastHikesScreen = ({ navigation }) => {
   const { data, isLoading, error } = useFetch(`${URL_HOST}/api/summit/`);
+  const [showMap, setShowMap] = useState(false);
+  const toggleSwitch = () => setShowMap((previousState) => !previousState);
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-blue-950">
       {!isLoading ? (
         <>
           <Text className=" text-white text-5xl py-4">Past Hikes</Text>
-          <ScrollView className="flex-1 " showsVerticalScrollIndicator={false}>
-            <View className="flex flex-col gap-8">
-              {data?.length > 0 ? (
-                data.map((hike, index) => (
-                  <TouchableOpacity
-                    className="flex p-4 rounded-lg drop-shadow-md bg-white min-h-[150] min-w-[200] gap-2"
-                    key={index}
-                    onPress={() =>
-                      navigation.navigate("Hike Details", {
-                        hikeId: hike?._id,
-                        name: hike?.name,
-                      })
-                    }
-                  >
-                    <Text className=" text-3xl text-blue-950 font-bold">
-                      {hike?.name}
-                    </Text>
-                    <Text className=" text-xl font-bold text-blue-950">
-                      {hike?.altitude} ft. elevation
-                    </Text>
-                    <Text className=" text-xl font-bold text-blue-950">
-                      {hike?.length} miles
-                    </Text>
-                  </TouchableOpacity>
-                ))
-              ) : (
-                <View>
-                  <Text className="text-white text-2xl font-bold">
-                    No recorded hikes!
-                  </Text>
-                  <CustomButton
-                    onPress={() => navigation.navigate("Add Hike")}
-                    text="Add New Hike"
-                  />
-                </View>
-              )}
-            </View>
-          </ScrollView>
+          <View className="flex flex-row justify-around">
+            <Text>List</Text>
+            <Switch
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={showMap ? "#ffb74d" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={showMap}
+            />
+            <Text>Map</Text>
+          </View>
+          <View className="flex-1">
+            {showMap ? (
+              <AllHikesMap data={data} navigation={navigation} />
+            ) : (
+              <ScrollView
+                className="flex-1"
+                showsVerticalScrollIndicator={false}
+              >
+                <PastHikeList data={data} navigation={navigation} />
+              </ScrollView>
+            )}
+          </View>
         </>
       ) : (
         <ActivityIndicator size="large" color="#fdbb74" />

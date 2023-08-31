@@ -8,6 +8,7 @@ import PastHikesScreen from "./screens/PastHikesScreen";
 import HikeDetailsScreen from "./screens/HikeDetailsScreen";
 import AddHikeScreen from "./screens/AddHikeScreen";
 import NavBar from "./components/NavBar";
+import { Toast } from "react-native-toast-message/lib/src/Toast";
 const Stack = createNativeStackNavigator();
 const NestedStack = createNativeStackNavigator();
 
@@ -42,6 +43,7 @@ export default function App() {
           })}
         />
       </Stack.Navigator>
+      <Toast />
     </NavigationContainer>
   );
 }

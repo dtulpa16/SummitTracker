@@ -12,8 +12,7 @@ import axios from "axios";
 import { URL_HOST } from "../utils/urlHost";
 import AddNoteIcon from "../assets/addNoteIcon.svg";
 import CustomButton from "./elements/CustomButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { credentials } from "../utils/keys";
+
 export default function AddHikeNotes({ hikeId, refetch }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [text, setText] = useState("");
@@ -30,8 +29,6 @@ export default function AddHikeNotes({ hikeId, refetch }) {
           formData
         );
         refetch();
-      } else {
-        console.log("Invalid login credentials!");
       }
     } catch (error) {
       console.log("Error Posting Note: ", error);
