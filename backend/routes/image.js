@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const path = require("path");
+const sharp = require('sharp');
 const {
   getAllImages,
   getImagesById,
@@ -23,13 +23,18 @@ router.post("/:id/upload", upload.single("imageUrl"), async (req, res) => {
   try {
     const file = req.file;
     const hikeId = req.params.id;
-    
+    const resizedImageBuffer = await sharp(file.buffer)
+      .resize(900) 
+      .jpeg({ quality: 85 })
+      .toBuffer();
+
     const uploadParams = {
       Bucket: process.env.AWS_BUCKET_NAME,
       Key: `${Date.now()}-${file.originalname}`,
-      Body: file.buffer,  
+      Body: resizedImageBuffer,  
       ACL: 'public-read'
     };
+
     s3.upload(uploadParams, (err, data) => {
       if (err) {
         res.status(500).json({ error: "Error -> " + err });
