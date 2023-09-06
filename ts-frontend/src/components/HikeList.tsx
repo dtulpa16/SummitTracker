@@ -121,7 +121,7 @@ const HikeCard: FC<HikeProp> = ({ hike }) => {
     >
       <div className="flex flex-col gap-2 text-white ">
         <div className="flex md:flex-row flex-col-reverse flex-wrap gap-2 justify-between md:w-[220px]">
-          <h2 className="font-bold text-md md:text-xl">{hike.name}</h2>
+          <h2 className="font-bold text-md md:text-xl md:max-w-max max-w-[155px]">{hike.name}</h2>
           <HikeOptionsMenu theme={theme} hike={hike} />
         </div>
         <h3 className="flex items-center gap-2 md:text-base text-sm">

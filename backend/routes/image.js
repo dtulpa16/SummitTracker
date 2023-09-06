@@ -25,7 +25,7 @@ router.post("/:id/upload", upload.single("imageUrl"), async (req, res) => {
     const hikeId = req.params.id;
     const resizedImageBuffer = await sharp(file.buffer)
       .resize(900) 
-      .jpeg({ quality: 85 })
+      .jpeg({ quality: 80 })
       .toBuffer();
 
     const uploadParams = {
