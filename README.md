@@ -1,4 +1,4 @@
-# [Summit Tracker](https://curious-jalebi-77f021.netlify.app/)
+# [Summit Tracker](https://summittracker.netlify.app/)
 
 SummitTracker is a web application that allows you to track your hikes, including the total elevation gain, photos, and notes. You can also view your past hikes and see your progress over time.
 
